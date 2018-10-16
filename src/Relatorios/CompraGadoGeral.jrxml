@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CompraGadoGeral" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aba14543-19f7-4f91-962d-257bfea51468">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style/>
+		</conditionalStyle>
+	</style>
+	<parameter name="dtInicial" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dtFinal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Destino" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Comprador" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.awt.Image" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     @QMin:=( SELECT sum(ent_gado_fisica.`ent_gado_fis_quantCab`) FROM `ent_gado_fisica` ent_gado_fisica WHERE ent_gado_fisica.`ent_gado_fis_nCompra` = compra_gado.`compra_gado_id` ) AS QMIN,
+     ( SELECT min(pagamentos.`pagto_DataPagto`) FROM `pagamentos` pagamentos WHERE pagamentos.`pagto_nCompra` = compra_gado.`compra_gado_id` ) AS dtPagto ,
+     IFNULL(( SELECT sum(ent_gado_fisica.`ent_gado_fis_pesoL`) FROM `ent_gado_fisica` ent_gado_fisica WHERE ent_gado_fisica.`ent_gado_fis_nCompra` = compra_gado.`compra_gado_id` )/@QMin, 0) AS PesoDestino,
+     compra_gado.`compra_gado_data` AS compra_gado_compra_gado_data,
+     compra_gado.`compra_gado_destino` AS compra_gado_compra_gado_destino,
+     compra_gado.`compra_gado_comprador` AS compra_gado_compra_gado_comprador,
+     compra_gado.`compra_gado_desc` AS compra_gado_compra_gado_desc,
+     compra_gado.`compra_gado_negociacao` AS compra_gado_compra_gado_negociacao,
+     @Qcab:= compra_gado.`compra_gado_quant` AS compra_gado_compra_gado_quant,
+     compra_gado.`compra_gado_precoUnit` AS compra_gado_compra_gado_precoUnit,
+     compra_gado.`compra_gado_pesoOrigem` AS compra_gado_compra_gado_pesoOrigem,
+     compra_gado.`compra_gado_ReaisArr` AS compra_gado_compra_gado_ReaisArr,
+     compra_gado.`compra_gado_fornecedor` AS compra_gado_compra_gado_fornecedor,
+     @ValorT:= IFNULL((select Sum(pagamentos.`pagto_valorPagto`) From `pagamentos` WHERE pagamentos.`pagto_nCompra` = compra_gado.`compra_gado_id`),0) AS compra_gado_compra_gado_valorT,
+     compra_gado.`compra_gado_pesoUnit` AS compra_gado_compra_gado_pesoUnit,
+     compra_gado.`compra_gado_id` as compra_gado_id,
+     @ValorT/@Qcab as ValorUnit,
+    	IFNULL((Select SUM(ec.`clas_valor`) from `escrituracao_classificacao` ec, `pagamentos` pg where pg.`pagto_id` = ec.`clas_idpagto` and pg.`pagto_DataPagto` BETWEEN $P{dtInicial}  AND  $P{dtFinal} and ec.`clas_planoconta` = 30102),0) as ValorFrete,
+	 IFNULL((Select SUM(ec.`clas_valor`) from `escrituracao_classificacao` ec, `pagamentos` pg where pg.`pagto_id` = ec.`clas_idpagto` and pg.`pagto_DataPagto` BETWEEN $P{dtInicial}  AND  $P{dtFinal} and ec.`clas_planoconta` = 30103),0) as ValorComissao
+
+FROM
+     `compra_gado` compra_gado, `pagamentos` pg
+WHERE
+pg.`pagto_nCompra` = compra_gado.`compra_gado_id` and
+pg.`pagto_DataPagto` BETWEEN $P{dtInicial}  AND  $P{dtFinal}
+AND compra_gado.`compra_gado_comprador` LIKE "%$P!{Comprador}%"
+AND compra_gado.`compra_gado_destino` LIKE "%$P!{Destino}%"
+
+
+GROUP BY
+     compra_gado.`compra_gado_comprador` ASC,
+     compra_gado.`compra_gado_destino`,
+     compra_gado.`compra_gado_id`]]>
+	</queryString>
+	<field name="QMIN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dtPagto" class="java.sql.Date"/>
+	<field name="PesoDestino" class="java.lang.Double"/>
+	<field name="compra_gado_compra_gado_data" class="java.sql.Date"/>
+	<field name="compra_gado_compra_gado_destino" class="java.lang.String"/>
+	<field name="compra_gado_compra_gado_comprador" class="java.lang.String"/>
+	<field name="compra_gado_compra_gado_desc" class="java.lang.String"/>
+	<field name="compra_gado_compra_gado_negociacao" class="java.lang.String"/>
+	<field name="compra_gado_compra_gado_quant" class="java.lang.Long"/>
+	<field name="compra_gado_compra_gado_precoUnit" class="java.math.BigDecimal"/>
+	<field name="compra_gado_compra_gado_pesoOrigem" class="java.math.BigDecimal"/>
+	<field name="compra_gado_compra_gado_ReaisArr" class="java.math.BigDecimal"/>
+	<field name="compra_gado_compra_gado_fornecedor" class="java.lang.String"/>
+	<field name="compra_gado_compra_gado_valorT" class="java.math.BigDecimal"/>
+	<field name="compra_gado_compra_gado_pesoUnit" class="java.math.BigDecimal"/>
+	<field name="compra_gado_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ValorUnit" class="java.lang.Double"/>
+	<field name="ValorFrete" class="java.math.BigDecimal"/>
+	<field name="ValorComissao" class="java.math.BigDecimal"/>
+	<variable name="QtCompraDestino" class="java.lang.Double" resetType="Group" resetGroup="Destino" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{compra_gado_compra_gado_quant})]]></variableExpression>
+	</variable>
+	<variable name="SomaValor" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{compra_gado_compra_gado_valorT})]]></variableExpression>
+	</variable>
+	<variable name="SomaQtTotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{compra_gado_compra_gado_quant})]]></variableExpression>
+	</variable>
+	<variable name="SomaValorTotal" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{compra_gado_compra_gado_valorT})]]></variableExpression>
+	</variable>
+	<variable name="QtMinDestino" class="java.lang.Double" resetType="Group" resetGroup="Destino" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{QMIN})]]></variableExpression>
+	</variable>
+	<variable name="ValorUnitMedio" class="java.lang.Double" resetType="Group" resetGroup="Comprador">
+		<variableExpression><![CDATA[$V{SomaValor} / $V{QtCompraDestino}]]></variableExpression>
+	</variable>
+	<variable name="PesoTotalDest" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[($F{PesoDestino} >0 ? $F{QMIN} * $F{PesoDestino}  : 0)]]></variableExpression>
+	</variable>
+	<variable name="PesoTotalOrig" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[($F{compra_gado_compra_gado_pesoUnit} >0 ? $F{QMIN} * $F{compra_gado_compra_gado_pesoUnit}  : 0)]]></variableExpression>
+	</variable>
+	<variable name="QtCabPesoDest" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[$F{PesoDestino} > 0 ? $F{QMIN}:0]]></variableExpression>
+	</variable>
+	<variable name="QtCabPesoOrig" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[($F{compra_gado_compra_gado_pesoOrigem} >0 ? $F{QMIN}  : 0)]]></variableExpression>
+	</variable>
+	<variable name="ValorTOrig" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[$F{compra_gado_compra_gado_pesoUnit} > 0 ? $F{compra_gado_compra_gado_valorT}:0]]></variableExpression>
+	</variable>
+	<variable name="ValorTDest" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[$F{PesoDestino} > 0 ? $F{compra_gado_compra_gado_valorT}:0]]></variableExpression>
+	</variable>
+	<variable name="ValorTotalMensal" class="java.math.BigDecimal"/>
+	<variable name="CustoMedio" class="java.math.BigDecimal"/>
+	<variable name="QtMinComprador" class="java.lang.Integer" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{compra_gado_compra_gado_quant})]]></variableExpression>
+	</variable>
+	<variable name="QtCompraComprador" class="java.lang.Integer" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{compra_gado_compra_gado_quant})]]></variableExpression>
+	</variable>
+	<variable name="qtCabQuebra" class="java.lang.Integer" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[$F{compra_gado_compra_gado_pesoOrigem} > 0 && $F{PesoDestino} > 0 ? $F{QMIN} :0]]></variableExpression>
+	</variable>
+	<variable name="PesoOrigQuebra" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[$F{compra_gado_compra_gado_pesoOrigem} > 0 && $F{PesoDestino} > 0 ? $F{compra_gado_compra_gado_pesoOrigem} :0]]></variableExpression>
+	</variable>
+	<variable name="PesoDestQuebra" class="java.lang.Double" resetType="Group" resetGroup="Comprador" calculation="Sum">
+		<variableExpression><![CDATA[$F{compra_gado_compra_gado_pesoOrigem} > 0 && $F{PesoDestino} > 0 ? $F{QMIN} *$F{PesoDestino} :0]]></variableExpression>
+	</variable>
+	<group name="Comprador">
+		<groupExpression><![CDATA[$F{compra_gado_compra_gado_comprador}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="100" height="20" isRemoveLineWhenBlank="true" uuid="645c24e8-81a0-4857-afea-31d4e35e9e5e"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{compra_gado_compra_gado_comprador}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="40">
+				<line>
+					<reportElement x="0" y="0" width="802" height="1" uuid="2621a01c-7393-456e-a9af-e9993dbcda64"/>
+				</line>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="420" y="0" width="100" height="20" uuid="827ff05b-e980-4170-b2a3-cc073ebca83e"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SomaValor}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="520" y="0" width="70" height="20" uuid="9c3997d5-f07a-4cf6-96f5-5e3075251ba3"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ValorUnitMedio}]]></textFieldExpression>
+				</textField>
+				<textField pattern="##0.0 kg">
+					<reportElement x="641" y="0" width="51" height="20" uuid="dd52a13c-eb86-4ca8-930e-b472479bea68"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PesoTotalDest}/$V{QtCabPesoDest}]]></textFieldExpression>
+				</textField>
+				<textField pattern="##0.0 kg">
+					<reportElement x="590" y="0" width="51" height="20" uuid="c114d093-246c-4bde-ab22-ba004ff45d9c"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PesoTotalOrig}/$V{QtCabPesoOrig}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="70" y="20" width="100" height="20" uuid="131e2dc1-a18d-4e38-961c-748012972b16"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[R$/@ - Origem]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="170" y="20" width="59" height="20" uuid="395f52e2-651c-4d00-ac70-3a2460717911"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($V{ValorTOrig} / $V{PesoTotalOrig}) *30]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="365" y="20" width="60" height="20" uuid="8d2ff1e4-2345-4870-bd3e-97639518fe95"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($V{ValorTDest} / $V{PesoTotalDest}) * 30]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="265" y="20" width="100" height="20" uuid="179a1e48-26f6-470f-b0ec-c59ab3b83ebf"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[R$/@ - Destino]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="235" y="1" width="45" height="20" uuid="7c4087cb-3b32-4499-8049-3c80b909f152"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{QtMinComprador}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="190" y="1" width="45" height="20" uuid="2832ec58-9525-4718-864d-4980ecc65c48"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{QtCompraComprador}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="1" width="190" height="20" uuid="e09c6ff1-5fbb-42fa-9281-ea66c28eafd0"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Sub-Total - "  + $F{compra_gado_compra_gado_comprador}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="594" y="20" width="47" height="20" uuid="ea42bcd7-c75b-4b86-ae98-78f0b777f47d"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{qtCabQuebra}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00 %">
+					<reportElement x="642" y="20" width="50" height="20" uuid="227b341a-df12-4a92-a701-cf95ea56fd8d"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($V{PesoDestQuebra} / $V{PesoOrigQuebra} ) - 1]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Destino">
+		<groupExpression><![CDATA[$F{compra_gado_compra_gado_destino}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement x="12" y="0" width="75" height="20" uuid="e211fded-0ad1-4576-bb0f-f0e291d5c788"/>
+					<textElement textAlignment="Left">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{compra_gado_compra_gado_destino}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="130" y="20" width="60" height="20" uuid="a347c485-15ef-4070-8d83-6de20c69b1ee"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Compra]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="190" y="20" width="45" height="20" uuid="cdee2736-0a90-4137-9ed0-17fd2d73b4b1"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Quant]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="280" y="20" width="140" height="20" uuid="e4ef41a8-0ba1-4152-afdd-743c6492930a"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fornecedor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="32" y="20" width="38" height="20" uuid="f1a1f5bd-c14d-49b1-b007-51fcb5d4b176"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nº Compra]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="20" width="100" height="20" uuid="c056356b-de0a-46d6-8ac0-d6ee61e781ea"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Valor Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="235" y="20" width="45" height="20" uuid="7124dab1-8e3d-4b4e-8cbe-0b40a481583a"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Q. Entr]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="70" y="20" width="60" height="20" uuid="569d98e1-b294-4aec-8657-f3341ef6ea82"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data Pagto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="520" y="20" width="70" height="20" uuid="e0ebaec4-bada-48cb-9c2e-6decec7ee945"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[ValorUnit]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="590" y="20" width="51" height="20" uuid="2afd18f9-00b3-4d34-819e-7647678cd836"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Peso Orig]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="641" y="20" width="51" height="20" uuid="8ffe94ca-cca8-4bc4-a57e-f14313b59c57"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Peso Dest]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField pattern="#,##0">
+					<reportElement x="235" y="0" width="45" height="20" uuid="7a6dfd02-d0e5-40be-b009-9de701bce0ce"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{QtMinDestino}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0">
+					<reportElement x="190" y="0" width="45" height="20" uuid="b777b6eb-8227-462d-ac00-9a11e811f6fb"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{QtCompraDestino}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="32" y="0" width="158" height="20" uuid="b03028a8-d5cb-4439-808f-c8e284b47210"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Sub-Total "  + $F{compra_gado_compra_gado_destino}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="802" height="1" uuid="46cb9518-38b7-40c7-999f-8ab71dab8cc6"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="85" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="802" height="85" uuid="7eb4632d-0b47-4115-84de-f9ba61a4bb38"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="46" uuid="8eb27fd0-d46c-4709-aa88-b6f1771060de"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Black" size="32"/>
+				</textElement>
+				<text><![CDATA[Alceu Elias Feldmann]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="46" width="278" height="39" uuid="3fff72d0-fc57-4482-a17c-f5dcafe6817c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Compra de Gado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="58" width="74" height="21" uuid="0878a1cd-3d3c-4607-949f-aba7e32d9c0d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Período de:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="364" y="58" width="75" height="21" uuid="3e1c8912-c082-4a3c-8e76-1829bba3c8eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dtInicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="458" y="58" width="75" height="21" uuid="20f46a05-6c84-48d1-8646-b4ad074c2df3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dtFinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="439" y="58" width="19" height="21" uuid="d00fdc5b-888f-4279-b13a-3fa273956b7e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[à]]></text>
+			</staticText>
+			<image isLazy="true">
+				<reportElement x="706" y="10" width="65" height="69" uuid="d58c503f-607f-44ed-b6b3-340f34bca7b8"/>
+				<imageExpression><![CDATA[$P{caminhoLogo} != null  ?  $P{caminhoLogo} :
+       "C:\\Users\\agroa\\Desktop\\SistemaAEF\\src\\Icones\\iconeAEF.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="20">
+			<rectangle>
+				<reportElement style="style1" mode="Opaque" x="0" y="0" width="802" height="20" backcolor="#CCCCFF" uuid="fc40c775-5018-465f-b825-0f1a352b0670">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) != 0)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement style="style1" x="32" y="0" width="38" height="20" uuid="9c4270fc-d3d7-45ca-a79e-4a916b7e5aa7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{compra_gado_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="45" height="20" uuid="918498ca-f37c-48df-857c-edff24a2e5c6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{compra_gado_compra_gado_quant}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="140" height="20" uuid="a61676a1-fde4-4116-acd9-21a925c3d991"/>
+				<textFieldExpression><![CDATA[$F{compra_gado_compra_gado_fornecedor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="130" y="0" width="60" height="20" uuid="f40c90f0-165f-44a9-9f75-2e1ec6f16248"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{compra_gado_compra_gado_data}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="420" y="0" width="100" height="20" uuid="040de88f-1593-477c-add2-e8564a5194b6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{compra_gado_compra_gado_valorT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="235" y="0" width="45" height="20" uuid="1dfea7a4-47e9-49da-8d69-f99688755230"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{QMIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="70" y="1" width="60" height="19" uuid="b1a6728c-b00a-492e-b79d-f18435abc692"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dtPagto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="520" y="0" width="70" height="20" uuid="d2476a8d-e927-408c-bf08-aba4a7dd3339"/>
+				<textFieldExpression><![CDATA[$F{ValorUnit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0 kg">
+				<reportElement x="590" y="0" width="51" height="20" uuid="c25754a4-b944-46fd-bfa8-a008c2c822f6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{compra_gado_compra_gado_pesoUnit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0.0 kg">
+				<reportElement x="641" y="0" width="51" height="20" uuid="1a3f0911-f9e6-4bd4-9c6e-2e9dc87f4df0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PesoDestino}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.0 %">
+				<reportElement x="692" y="0" width="33" height="20" uuid="d5d3a674-3a27-46aa-90d5-b4292936c6c6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{compra_gado_compra_gado_pesoUnit} != 0 & $F{PesoDestino} != 0 ?
+($F{PesoDestino} / $F{compra_gado_compra_gado_pesoUnit})-1 : 0]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="104">
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="425" y="11" width="100" height="20" uuid="ea10df65-0dc9-4786-93ec-a7ee12330657"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SomaValorTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0 cabeças">
+				<reportElement x="525" y="11" width="103" height="20" uuid="6bd950f4-e844-4296-8980-4b13743d0086"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SomaQtTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="313" y="11" width="112" height="20" uuid="73ed51a8-e90f-4447-b4e7-4817f6722d10"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total do Período]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="31" width="112" height="20" uuid="cb373e04-b19a-4aa4-b0a3-f416bd8aa28d"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Frete]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="51" width="112" height="20" uuid="bb081219-2c17-4130-8b66-347a3ef8c968"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Comissão]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="425" y="31" width="100" height="20" uuid="065a9aeb-2ae1-4559-b4b5-84a3be7a3168"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ValorFrete}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="425" y="51" width="100" height="20" uuid="c34d4c92-2d8c-4330-8421-0aa33f9c0ec2"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ValorComissao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="425" y="71" width="100" height="20" uuid="946ea225-ecd7-46d5-89e8-fe877ff6fdb0"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ValorFrete} +$F{ValorComissao} +$V{SomaValorTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="313" y="71" width="112" height="20" uuid="df44e441-c2a4-4c0f-9f00-32fc771e12ab"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="300" y="71" width="341" height="1" uuid="1abcb06e-b311-4314-a942-15f151ef40b2"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

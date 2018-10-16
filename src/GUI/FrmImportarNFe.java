@@ -1,0 +1,881 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package GUI;
+
+import Almoxarifado.FrmCadAlmoxarif;
+import Almoxarifado.CadItensAlmoxCodigos;
+import Beans.FornecedoresBeans;
+import Beans.PedidosAlmoxarifadoFechamento;
+import DAO.CadAlmoxarifadaoDAO;
+import DAO.FornecedoresDAO;
+import DAO.NFeDAO;
+import Icones.FormatarICO;
+import NFe.LerArqXML;
+import NFe.NFeBeans;
+import TableModel.TableModelProdutosNFe;
+import Utilitarios.CentralizarTabela;
+import Utilitarios.Corretores;
+import Utilitarios.ThreadLoadProgressBar;
+import com.sun.glass.events.KeyEvent;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.util.List;
+import javax.swing.Action;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+
+/**
+ *
+ * @author agroa
+ */
+public class FrmImportarNFe extends javax.swing.JInternalFrame {
+
+    MaskFormatter CPFMask;
+    MaskFormatter CNPJMask;
+    TableModelProdutosNFe TbProdutos;
+    NFeBeans nfeB;
+    CentralizarTabela Centralizar;
+    FornecedoresDAO FornD;
+    NFeDAO NFeD;
+    Integer ID_Fornecedor;
+    FrmConsultaPecas frmConsulta;
+    CadAlmoxarifadaoDAO CadD;
+    FornecedoresBeans FornB;
+    TableModelCellRenderer cellRenderer;
+    String CaminhoArquivoImportado;
+    PedidosAlmoxarifadoFechamento fechamentoB;
+    ThreadLoadProgressBar thread;
+
+    public FrmImportarNFe() {
+        initComponents();
+        Centralizar = new CentralizarTabela();
+        FornD = new FornecedoresDAO();
+        NFeD = new NFeDAO();
+        CadD = new CadAlmoxarifadaoDAO();
+        maskFormaterCPF();
+        carregarTabela();
+    }
+
+    private void maskFormaterCPF() {
+        try {
+            CNPJMask = new MaskFormatter("##.###.###/####-##");
+            CPFMask = new MaskFormatter("###.###.###-##");
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private JTable carregarTabela() {
+        tb_pecas.setModel(getTableModel());
+        ((DefaultTableCellRenderer) tb_pecas.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+        Centralizar.centralizarTabela(tb_pecas);
+        cellRenderer = new TableModelCellRenderer();
+        tb_pecas.getColumnModel().getColumn(TbProdutos.ID_DB).setMaxWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.ID_DB).setMinWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.ID_DB).setPreferredWidth(0);
+
+        tb_pecas.getColumnModel().getColumn(TbProdutos.LOCALIZADOR).setMaxWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.LOCALIZADOR).setMinWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.LOCALIZADOR).setPreferredWidth(0);
+
+        tb_pecas.getColumnModel().getColumn(TbProdutos.ID_LOCALIZADOR).setMaxWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.ID_LOCALIZADOR).setMinWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.ID_LOCALIZADOR).setPreferredWidth(0);
+
+        //tb_pecas.getColumnModel().getColumn(TbProdutos.XPROD).setMaxWidth(250);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.XPROD).setMinWidth(180);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.XPROD).setPreferredWidth(210);
+
+        tb_pecas.getColumnModel().getColumn(TbProdutos.VDESC).setMaxWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.VDESC).setMinWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.VDESC).setPreferredWidth(0);
+
+        tb_pecas.getColumnModel().getColumn(TbProdutos.VALORUNITFINAL).setMaxWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.VALORUNITFINAL).setMinWidth(0);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.VALORUNITFINAL).setPreferredWidth(0);
+
+        tb_pecas.getColumnModel().getColumn(TbProdutos.VUNCOM).setCellRenderer(cellRenderer);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.VPROD).setCellRenderer(cellRenderer);
+        tb_pecas.getColumnModel().getColumn(TbProdutos.QCOM).setCellRenderer(cellRenderer);
+        return tb_pecas;
+    }
+
+    private TableModelProdutosNFe getTableModel() {
+        if (TbProdutos == null) {
+            TbProdutos = new TableModelProdutosNFe();
+        }
+        return TbProdutos;
+    }
+
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPopup = new javax.swing.JPopupMenu();
+        menu_consulta = new javax.swing.JMenu();
+        menu_consulta_fabr = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        menu_consulta_fornecedor = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        menu_consulta_lote = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenu1 = new javax.swing.JMenu();
+        menu_cadastrar_novo = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        menu_cadastrar_conversao = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        menu_cadastrar_lote = new javax.swing.JMenuItem();
+        jPanel3 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
+        txt_nNf = new javax.swing.JTextField();
+        btn_importarDados = new javax.swing.JButton();
+        btn_lerNFe = new javax.swing.JButton();
+        javax.swing.JLabel jLabel13 = new javax.swing.JLabel();
+        txt_dtEmi = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel14 = new javax.swing.JLabel();
+        txt_valorNF = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
+        txt_natOp = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_pecas = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
+        cb_tipoPessoa = new javax.swing.JComboBox<>();
+        javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
+        txt_cpf = new javax.swing.JFormattedTextField();
+        javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
+        txt_nomeFantasia = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel11 = new javax.swing.JLabel();
+        txt_razaoSocial = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel12 = new javax.swing.JLabel();
+        txt_idFornecedor = new javax.swing.JTextField();
+        btn_pesqFornecedor = new javax.swing.JButton();
+        javax.swing.JLabel jLabel16 = new javax.swing.JLabel();
+        txt_nomeCadastro = new javax.swing.JTextField();
+        javax.swing.JLabel jLabel17 = new javax.swing.JLabel();
+        txt_idFechamento = new javax.swing.JTextField();
+        btn_pesqFechamento = new javax.swing.JButton();
+
+        menu_consulta.setText("Consultar Código");
+        menu_consulta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        menu_consulta_fabr.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        menu_consulta_fabr.setText("Por Código Fabricante");
+        menu_consulta_fabr.setBorderPainted(true);
+        menu_consulta_fabr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_consulta_fabrActionPerformed(evt);
+            }
+        });
+        menu_consulta.add(menu_consulta_fabr);
+        menu_consulta.add(jSeparator1);
+
+        menu_consulta_fornecedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        menu_consulta_fornecedor.setText("Por Código de Fornecedor");
+        menu_consulta_fornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_consulta_fornecedorActionPerformed(evt);
+            }
+        });
+        menu_consulta.add(menu_consulta_fornecedor);
+        menu_consulta.add(jSeparator4);
+
+        menu_consulta_lote.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        menu_consulta_lote.setText("Consultar Lote de Codigos");
+        menu_consulta_lote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_consulta_loteActionPerformed(evt);
+            }
+        });
+        menu_consulta.add(menu_consulta_lote);
+
+        jPopup.add(menu_consulta);
+        jPopup.add(jSeparator2);
+
+        jMenu1.setText("Cadastrar");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        menu_cadastrar_novo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        menu_cadastrar_novo.setText("Cadastrar Novo Item");
+        menu_cadastrar_novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_cadastrar_novoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menu_cadastrar_novo);
+        jMenu1.add(jSeparator3);
+
+        menu_cadastrar_conversao.setText("Cadastrar Código do Fornecedor");
+        menu_cadastrar_conversao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_cadastrar_conversaoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menu_cadastrar_conversao);
+        jMenu1.add(jSeparator5);
+
+        menu_cadastrar_lote.setText("Cadastrar Código em Lote");
+        menu_cadastrar_lote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_cadastrar_loteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menu_cadastrar_lote);
+
+        jPopup.add(jMenu1);
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Importar NFe");
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Nº Doc");
+
+        txt_nNf.setEditable(false);
+        txt_nNf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btn_importarDados.setText("Cadastrar NFe");
+        btn_importarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_importarDadosActionPerformed(evt);
+            }
+        });
+
+        btn_lerNFe.setText("Ler Xml NFe");
+        btn_lerNFe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_lerNFeActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel13.setText("Data Emissão");
+
+        txt_dtEmi.setEditable(false);
+        txt_dtEmi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setText("Valor Total da NF");
+
+        txt_valorNF.setEditable(false);
+        txt_valorNF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setText("Operação");
+
+        txt_natOp.setEditable(false);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_nNf, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_natOp, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_dtEmi, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_valorNF, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_importarDados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_lerNFe)
+                .addGap(16, 16, 16))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btn_lerNFe)
+                    .addComponent(btn_importarDados)
+                    .addComponent(txt_nNf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel13)
+                    .addComponent(txt_dtEmi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(txt_valorNF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(txt_natOp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        tb_pecas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tb_pecas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_pecasMouseClicked(evt);
+            }
+        });
+        tb_pecas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tb_pecasKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tb_pecas);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setText("Tipo Pessoa");
+
+        cb_tipoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "CPF", "CNPJ" }));
+        cb_tipoPessoa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_tipoPessoaItemStateChanged(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setText("CNPJ");
+
+        txt_cpf.setEditable(false);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("Nome Fantasia");
+
+        txt_nomeFantasia.setEditable(false);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("Razão Social");
+
+        txt_razaoSocial.setEditable(false);
+        txt_razaoSocial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_razaoSocialActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel12.setText("ID Fornecedor");
+
+        txt_idFornecedor.setEditable(false);
+        txt_idFornecedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btn_pesqFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/buscar pequeno.png"))); // NOI18N
+        btn_pesqFornecedor.setPreferredSize(new java.awt.Dimension(30, 25));
+        btn_pesqFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pesqFornecedorActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel16.setText("Cadastro Fornecedor");
+
+        txt_nomeCadastro.setEditable(false);
+        txt_nomeCadastro.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel17.setText("Pedido Compra");
+
+        txt_idFechamento.setEditable(false);
+        txt_idFechamento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btn_pesqFechamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/buscar pequeno.png"))); // NOI18N
+        btn_pesqFechamento.setPreferredSize(new java.awt.Dimension(30, 25));
+        btn_pesqFechamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pesqFechamentoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_idFechamento, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btn_pesqFechamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_razaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_tipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_idFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btn_pesqFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_nomeCadastro)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txt_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(cb_tipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(btn_pesqFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_idFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel16)
+                    .addComponent(txt_nomeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel17)
+                    .addComponent(txt_idFechamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_pesqFechamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(txt_nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(txt_razaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void cb_tipoPessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipoPessoaItemStateChanged
+        if (cb_tipoPessoa.getSelectedItem().toString().equals("CPF")) {
+            txt_cpf.setValue(null);
+            txt_cpf.setFormatterFactory(new DefaultFormatterFactory(CPFMask));
+        } else if (cb_tipoPessoa.getSelectedItem().toString().equals("CNPJ")) {
+            txt_cpf.setValue(null);
+            txt_cpf.setFormatterFactory(new DefaultFormatterFactory(CNPJMask));
+        } else {
+            txt_cpf.setValue(null);
+        }
+    }//GEN-LAST:event_cb_tipoPessoaItemStateChanged
+
+    private void txt_razaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_razaoSocialActionPerformed
+
+    }//GEN-LAST:event_txt_razaoSocialActionPerformed
+
+    private void btn_pesqFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesqFornecedorActionPerformed
+        frmCadFornecedores fornecedor = new frmCadFornecedores();
+        this.getParent().add(fornecedor);
+        fornecedor.setVisible(true);
+        fornecedor.tb_fornecedores.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                if (me.getClickCount() == 2) {
+                    int index = fornecedor.tb_fornecedores.getSelectedRow();
+                    nfeB.setID_Fornecedor((Integer) fornecedor.TbForn.getValueAt(index, 0));
+                    txt_idFornecedor.setText(nfeB.getID_Fornecedor().toString());
+                    txt_nomeCadastro.setText(fornecedor.TbForn.getValueAt(index, 2).toString() + " - " + fornecedor.TbForn.getValueAt(index, 2).toString());
+                    fornecedor.dispose();
+                }
+            }
+        });
+    }//GEN-LAST:event_btn_pesqFornecedorActionPerformed
+
+    private void btn_lerNFeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lerNFeActionPerformed
+        JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("XML FILES", "xml", "XML");
+        fc.setFileFilter(filter);
+        Action details = fc.getActionMap().get("viewTypeDetails");
+        details.actionPerformed(null);
+        fc.setPreferredSize(new Dimension(600, 500));
+        File caminho = new File("\\\\Servidor\\Server\\OneDrive\\Escritório\\SistemaAEF\\src\\Arquivos\\NFe_xml");
+        if (caminho.exists()) {
+            fc.setCurrentDirectory(caminho);
+        } else {
+            caminho = new File((new File("").getAbsoluteFile()) + "/src/Arquivos/NFe_xml");
+            fc.setCurrentDirectory(caminho);
+        }
+        //JOptionPane.showMessageDialog(null, caminho, "Erro", 0, FormatarICO.ICObtnSair());
+        int option = fc.showOpenDialog(this);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            CaminhoArquivoImportado = fc.getSelectedFile().getAbsolutePath();
+            //JOptionPane.showMessageDialog(null, CaminhoArquivoImportado, "Erro", 0, FormatarICO.ICObtnSair());
+            LerArqXML carregarXML = new LerArqXML(CaminhoArquivoImportado);
+            nfeB = carregarXML.lerXML();
+            preencherFormulario(nfeB);
+        }
+    }//GEN-LAST:event_btn_lerNFeActionPerformed
+
+    private void btn_importarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importarDadosActionPerformed
+        int cadastrar = JOptionPane.showConfirmDialog(null, "Deseja Importar está NFe?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (cadastrar == JOptionPane.YES_OPTION) {
+            if (nfeB.getID_Fornecedor() > 0) {
+                NFeD.cadastrarNFe(nfeB);
+                File ArquivoImportado = new File(CaminhoArquivoImportado);
+                File ArquivoRenomeado = new File(ArquivoImportado.getParent() + "/Importados/" + txt_nomeFantasia.getText().replaceAll(" ", "_") + "_" + txt_nNf.getText() + ".xml");
+                try {
+                    ArquivoImportado.renameTo(ArquivoRenomeado);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao Renomear Arquivo: " + ArquivoRenomeado, "Erro", 0, FormatarICO.ICObtnSair());
+                }
+                limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione o Código do Fornecedor!", "Erro", 0, FormatarICO.ICObtnSair());
+            }
+        }
+    }//GEN-LAST:event_btn_importarDadosActionPerformed
+
+    private void menu_consulta_fornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_consulta_fornecedorActionPerformed
+        int index = tb_pecas.getSelectedRow();
+        Integer ID_Fornecedor = Integer.parseInt(txt_idFornecedor.getText());
+        String Codigo = TbProdutos.getValueAt(index, TbProdutos.CPROD).toString();
+        if (ID_Fornecedor > 0) {
+            carregarFrmConsulta(index);
+            frmConsulta.txt_codigo.setText(Codigo);
+            frmConsulta.txt_fornecedor.setText(txt_nomeFantasia.getText());
+            frmConsulta.ID_Fornecedor = ID_Fornecedor;
+            frmConsulta.ch_nao.setSelected(true);
+            frmConsulta.ch_sim.setSelected(false);
+            //frmConsulta.CadD.consultarCodigoPorFornecedor(frmConsulta.TbPecas, Codigo , ID_Fornecedor);
+            frmConsulta.btn_consulta.doClick();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um fornecedor Cadastrado, ou cadastre o fornecedor desta NFe!", "Erro", 0, FormatarICO.ICObtnSair());
+        }
+
+
+    }//GEN-LAST:event_menu_consulta_fornecedorActionPerformed
+
+    private void tb_pecasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_pecasMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            if (jPopup.isVisible() == true) {
+                jPopup.setVisible(false);
+            } else {
+                jPopup.setVisible(true);
+                jPopup.show(this, 0, 0);
+                jPopup.setLocation(evt.getLocationOnScreen());
+            }
+        }
+    }//GEN-LAST:event_tb_pecasMouseClicked
+
+    private void menu_consulta_fabrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_consulta_fabrActionPerformed
+        int index = tb_pecas.getSelectedRow();
+        carregarFrmConsulta(index);
+        frmConsulta.txt_codigo.setText(TbProdutos.getValueAt(index, TbProdutos.CPROD).toString());
+        frmConsulta.ch_nao.setSelected(false);
+        frmConsulta.ch_sim.setSelected(true);
+        frmConsulta.btn_consulta.doClick();
+
+    }//GEN-LAST:event_menu_consulta_fabrActionPerformed
+
+    private void tb_pecasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tb_pecasKeyPressed
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_F2:
+                menu_consulta_fabr.doClick();
+                break;
+            case KeyEvent.VK_F3:
+                menu_consulta_fornecedor.doClick();
+                break;
+            case KeyEvent.VK_F4:
+                menu_consulta_lote.doClick();
+                break;
+            case KeyEvent.VK_F5:
+                menu_cadastrar_novo.doClick();
+                break;
+            case KeyEvent.VK_F6:
+                menu_cadastrar_conversao.doClick();
+                break;
+            default:
+                break;
+        }
+
+    }//GEN-LAST:event_tb_pecasKeyPressed
+
+    private void menu_cadastrar_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cadastrar_novoActionPerformed
+        int index = tb_pecas.getSelectedRow();
+        int idFornecedor = new Integer(txt_idFornecedor.getText());
+        if (idFornecedor > 0) {
+            FrmCadAlmoxarif cadItem = new FrmCadAlmoxarif();
+            this.getParent().add(cadItem);
+            cadItem.btn_novo.doClick();
+            cadItem.txt_codigo.setText(TbProdutos.getValueAt(index, TbProdutos.CPROD).toString());
+            cadItem.txt_descricao.setText(TbProdutos.getValueAt(index, TbProdutos.XPROD).toString());
+            cadItem.txt_fornecedor.setText(txt_nomeFantasia.getText());
+            cadItem.CNPJ_Fornecedor = txt_cpf.getText();
+            cadItem.ID_Fornecedor = new Integer(txt_idFornecedor.getText());
+            cadItem.setVisible(true);
+        }
+    }//GEN-LAST:event_menu_cadastrar_novoActionPerformed
+
+    private void menu_cadastrar_conversaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cadastrar_conversaoActionPerformed
+        int index = tb_pecas.getSelectedRow();
+        int idFornecedor = new Integer(txt_idFornecedor.getText());
+        if (idFornecedor > 0) {
+            if (TbProdutos.getValueAt(index, TbProdutos.ID_CADASTRO) != null) {
+                int cadastrar = JOptionPane.showConfirmDialog(null, "Deseja cadastrar esta conversão para este Item?", "Atenção", JOptionPane.YES_NO_OPTION);
+                if (cadastrar == JOptionPane.YES_OPTION) {
+                    CadD.CadastrarConversao(TbProdutos.getBeans(index), idFornecedor, txt_cpf.getText());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione o Código Interno ao qual este produto se refere!", "Erro", 0, FormatarICO.ICObtnSair());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um fornecedor Cadastrado, ou cadastre o fornecedor desta NFe!", "Erro", 0, FormatarICO.ICObtnSair());
+        }
+
+
+    }//GEN-LAST:event_menu_cadastrar_conversaoActionPerformed
+
+    private void menu_consulta_loteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_consulta_loteActionPerformed
+        String Codigos = "";
+        int idFornecedor = new Integer(txt_idFornecedor.getText());
+        if (idFornecedor > 0) {
+            for (int i = 0; i < TbProdutos.getRowCount(); i++) {
+                Codigos += ",'" + TbProdutos.getValueAt(i, TbProdutos.CPROD).toString() + "'";
+            }
+            preencherID_Cadastro(CadD.consultarListaDeCodigoCodigoFornecedor(idFornecedor, Codigos.replaceFirst(",", "")));
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um fornecedor Cadastrado, ou cadastre o fornecedor desta NFe!", "Erro", 0, FormatarICO.ICObtnSair());
+        }
+
+
+    }//GEN-LAST:event_menu_consulta_loteActionPerformed
+
+    private void menu_cadastrar_loteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cadastrar_loteActionPerformed
+        int cadastrar = JOptionPane.showConfirmDialog(null, "Está Ação irá cadastrar todas as conversões da nota fiscal, deseja continuar?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (cadastrar == JOptionPane.YES_OPTION) {
+            int idFornecedor = new Integer(txt_idFornecedor.getText());
+            if (idFornecedor > 0) {
+                CadD.CadastrarConversaoEmLOTE(TbProdutos.getLista(), idFornecedor, txt_cpf.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um fornecedor Cadastrado, ou cadastre o fornecedor desta NFe!", "Erro", 0, FormatarICO.ICObtnSair());
+            }
+        }
+    }//GEN-LAST:event_menu_cadastrar_loteActionPerformed
+
+    private void btn_pesqFechamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesqFechamentoActionPerformed
+        FrmPedidosFechamento frmFechamento = new FrmPedidosFechamento();
+        this.getParent().add(frmFechamento);
+        frmFechamento.setVisible(true);
+        frmFechamento.jTabbedPane1.setSelectedIndex(1);
+        frmFechamento.tb_consulta.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    int index = frmFechamento.tb_consulta.getSelectedRow();
+                    Long id_fechamento = (Long) frmFechamento.TbConsulta.getValueAt(index, frmFechamento.TbConsulta.ID_FECHAMENTO);
+                    if (id_fechamento > 0L) {
+                        thread = new ThreadLoadProgressBar() {
+                            @Override
+                            public void run() {
+                              fechamentoB = frmFechamento.PedidosD.buscarFechamento(id_fechamento, thread.dialog);
+                              txt_idFechamento.setText(fechamentoB.getId().toString());
+                              frmFechamento.dispose();
+                            }
+                        };
+                    }
+                }
+            }
+        });
+
+    }//GEN-LAST:event_btn_pesqFechamentoActionPerformed
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_importarDados;
+    private javax.swing.JButton btn_lerNFe;
+    javax.swing.JButton btn_pesqFechamento;
+    javax.swing.JButton btn_pesqFornecedor;
+    private javax.swing.JComboBox<String> cb_tipoPessoa;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    public javax.swing.JPopupMenu jPopup;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JMenuItem menu_cadastrar_conversao;
+    private javax.swing.JMenuItem menu_cadastrar_lote;
+    private javax.swing.JMenuItem menu_cadastrar_novo;
+    public javax.swing.JMenu menu_consulta;
+    public javax.swing.JMenuItem menu_consulta_fabr;
+    private javax.swing.JMenuItem menu_consulta_fornecedor;
+    private javax.swing.JMenuItem menu_consulta_lote;
+    private javax.swing.JTable tb_pecas;
+    private javax.swing.JFormattedTextField txt_cpf;
+    private javax.swing.JTextField txt_dtEmi;
+    private javax.swing.JTextField txt_idFechamento;
+    private javax.swing.JTextField txt_idFornecedor;
+    private javax.swing.JTextField txt_nNf;
+    private javax.swing.JTextField txt_natOp;
+    private javax.swing.JTextField txt_nomeCadastro;
+    private javax.swing.JTextField txt_nomeFantasia;
+    private javax.swing.JTextField txt_razaoSocial;
+    private javax.swing.JTextField txt_valorNF;
+    // End of variables declaration//GEN-END:variables
+
+    private void carregarFrmConsulta(Integer indexOrigem) {
+        frmConsulta = new FrmConsultaPecas();
+        frmConsulta.tb_pecas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                if (me.getClickCount() == 2) {
+                    int index = frmConsulta.tb_pecas.getSelectedRow();
+                    TbProdutos.setValueAt(frmConsulta.TbPecas.getValueAt(index, 0), indexOrigem, TbProdutos.ID_CADASTRO);
+                    frmConsulta.dispose();
+                }
+            }
+        });
+        this.getParent().add(frmConsulta);
+        frmConsulta.setVisible(true);
+    }
+
+    private void preencherID_Cadastro(List<CadItensAlmoxCodigos> listaID) {
+        for (int i = 0; i < TbProdutos.getRowCount(); i++) {
+            for (CadItensAlmoxCodigos codigo : listaID) {
+                if (codigo.getCodigo().equals(TbProdutos.getValueAt(i, TbProdutos.CPROD))) {
+                    TbProdutos.setValueAt(codigo.getID(), i, TbProdutos.ID_DB);
+                    TbProdutos.setValueAt(codigo.getID_ITEM(), i, TbProdutos.ID_CADASTRO);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void preencherFormulario(NFeBeans nfeB) {
+        txt_nomeFantasia.setText(nfeB.getxFant());
+        txt_razaoSocial.setText(nfeB.getxNome());
+        txt_nNf.setText(nfeB.getnNF().toString());
+        if (nfeB.getCNPJ().length() > 11) {       cb_tipoPessoa.setSelectedIndex(2);  } else {  cb_tipoPessoa.setSelectedIndex(1);
+        }
+        txt_cpf.setText(nfeB.getCNPJ());
+        TbProdutos.limpar();
+        TbProdutos.addLista(nfeB.getListProdutos());
+        FornB = FornD.getFornecedor(txt_cpf.getText());
+        nfeB.setID_Fornecedor(FornB.getID());
+        txt_nomeCadastro.setText(FornB.getNomeFantasia() + " - " + FornB.getRazaoSocial());
+        txt_idFornecedor.setText(nfeB.getID_Fornecedor().toString());
+        txt_natOp.setText(nfeB.getNatOp());
+        txt_dtEmi.setText(Corretores.ConverterParaJava(nfeB.getDhEmi()));
+        txt_valorNF.setText(Corretores.ConverterDoubleReais(nfeB.getvNF()));
+    }
+
+    private void limparCampos() {
+        txt_nNf.setText("");
+        txt_natOp.setText("");
+        txt_dtEmi.setText("");
+        txt_valorNF.setText("");
+        cb_tipoPessoa.setSelectedIndex(0);
+        txt_idFornecedor.setText("0");
+        txt_cpf.setText("");
+        txt_nomeCadastro.setText("");
+        txt_nomeFantasia.setText("");
+        txt_razaoSocial.setText("");
+        TbProdutos.limpar();
+        ID_Fornecedor = 0;
+    }
+
+    private void excluirArquivo(File arquivo) {
+        int cadastrar = JOptionPane.showConfirmDialog(null, "Deseja excluir este arquivo?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if (cadastrar == JOptionPane.YES_OPTION) {
+            arquivo.delete();
+        }
+    }
+
+    private JFileChooser SeletorDeNFe() {
+        return null;
+    }
+
+    class TableModelCellRenderer extends DefaultTableCellRenderer {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            setHorizontalAlignment(SwingConstants.CENTER);
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            Object val = table.getValueAt(row, column);
+            TableModelProdutosNFe tableModel = (TableModelProdutosNFe) table.getModel();
+            if (column == tableModel.QCOM) {
+                Double valorD = (Double) val;
+                setText(new DecimalFormat("###,##0.00").format(valorD));
+            }
+            if (column == tableModel.VUNCOM || column == tableModel.VALORUNITFINAL || column == tableModel.VPROD) {
+                Double valorD = (Double) val;
+                setText(new DecimalFormat("R$ ###,##0.00").format(valorD));
+            }
+
+            return this;
+        }
+    }
+
+}

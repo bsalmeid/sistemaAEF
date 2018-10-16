@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelCompraPagto" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="caf5307a-1caf-4a8c-a54f-8e7c0d0722bb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codCompra" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pagamentos.`pagto_id` AS pagamentos_pagto_id,
+     pagamentos.`pagto_DataPagto` AS pagamentos_pagto_DataPagto,
+     pagamentos.`pagto_valorPagto` AS pagamentos_pagto_valorPagto,
+     pagamentos.`pagto_forma` AS pagamentos_pagto_forma,
+     pagamentos.`pagto_nDoc` AS pagamentos_pagto_nDoc,
+     pagamentos.`pagto_banco` AS pagamentos_pagto_banco,
+     pagamentos.`pagto_agencia` AS pagamentos_pagto_agencia,
+     pagamentos.`pagto_conta` AS pagamentos_pagto_conta,
+     pagamentos.`pagto_titular` AS pagamentos_pagto_titular,
+     pagamentos.`pagto_cpf` AS pagamentos_pagto_cpf
+FROM
+     `pagamentos` pagamentos
+WHERE
+     pagamentos.`pagto_nCompra` = $P{codCompra}]]>
+	</queryString>
+	<field name="pagamentos_pagto_id" class="java.lang.Integer"/>
+	<field name="pagamentos_pagto_DataPagto" class="java.sql.Date"/>
+	<field name="pagamentos_pagto_valorPagto" class="java.math.BigDecimal"/>
+	<field name="pagamentos_pagto_forma" class="java.lang.String"/>
+	<field name="pagamentos_pagto_nDoc" class="java.lang.String"/>
+	<field name="pagamentos_pagto_banco" class="java.lang.String"/>
+	<field name="pagamentos_pagto_agencia" class="java.lang.String"/>
+	<field name="pagamentos_pagto_conta" class="java.lang.String"/>
+	<field name="pagamentos_pagto_titular" class="java.lang.String"/>
+	<field name="pagamentos_pagto_cpf" class="java.lang.String"/>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="22" uuid="de01f8a8-7884-4586-9411-2cf88a0d5ed3"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pagamentos Efetuados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="36" height="20" uuid="6599a005-b72c-436a-8f49-411bff0cd168"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="22" width="81" height="20" uuid="c484829c-d522-4ed6-863a-e01d50c30b45"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Pagto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="117" y="22" width="80" height="20" uuid="f6966e35-cdd5-44bf-8de0-4283185afc01"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma Pagto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="22" width="66" height="20" uuid="c832b4b2-7bc4-4e92-a0ce-5da3e2313986"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Doc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="22" width="172" height="20" uuid="92f1f2ba-8b65-4ba6-a214-49896c45db5b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Favorecido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="22" width="85" height="20" uuid="3e7d1a05-3de8-4473-9387-82fac4fc508e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="22" width="86" height="20" uuid="aa436b74-a99c-48aa-b680-e7c74d1b7857"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="606" y="22" width="58" height="20" uuid="de18b203-a8b9-453a-8229-cef7237c190b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agência]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="664" y="22" width="63" height="20" uuid="a415a217-8a3f-4dd7-ad3f-d1d48c335198"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conta]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="42" width="842" height="1" uuid="f06a737f-19a1-45b0-85fa-a289a28e4729"/>
+			</line>
+			<staticText>
+				<reportElement x="727" y="22" width="115" height="20" uuid="05fb52cb-86db-465d-9f5f-7fc82427eb9f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Pago]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="36" height="20" uuid="453f7494-86f8-4d1a-9079-65998d32ea13"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="36" y="0" width="81" height="20" uuid="b13e17f4-6bab-4ccc-b6b5-0c6c0ed41073"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_DataPagto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="0" width="80" height="20" uuid="ecb4679b-d645-433e-9e6e-8319f24b1c4b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_forma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="0" width="66" height="20" uuid="6bf4f04c-119e-4a64-bb68-181b2b2bf1bc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_nDoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="0" width="172" height="20" uuid="645f4da8-50e8-4b98-ba20-5a50d97035f0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_titular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="85" height="20" uuid="938e9818-505b-4839-95ee-c5f2ad834c54"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="86" height="20" uuid="b9e5c521-630a-4742-bf41-e05536a0e1a9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_banco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="606" y="0" width="58" height="20" uuid="91f35cc9-f6e5-4fb6-bc2e-95426c0807d5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_agencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="664" y="0" width="63" height="20" uuid="a0b44ef3-dbd3-40c9-bda5-e2c1677eb536"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_conta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="727" y="0" width="115" height="20" uuid="363c95b3-3081-4256-8f8d-0d915e1ffbab"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pagamentos_pagto_valorPagto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

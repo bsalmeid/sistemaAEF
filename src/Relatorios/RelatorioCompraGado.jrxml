@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioCompraGado" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="7" bottomMargin="6" uuid="dc140ced-47c0-469d-a29a-ed061ba284de">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="57"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codCompra" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Bruno\\Documents\\NetBeansProjects\\SistemaAEF\\src\\Relatorios\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ( SELECT sum(pagamentos.`pagto_valorPagto`) FROM `pagamentos` pagamentos WHERE pagamentos.`pagto_nCompra` = $P{codCompra} ) as ValorPago,
+     ( SELECT SUM(ent_gado_fisica.`ent_gado_fis_quantGTA`) FROM `ent_gado_fisica` ent_gado_fisica WHERE ent_gado_fisica.`ent_gado_fis_nCompra` = $P{codCompra} ) as QGTA,
+     ( SELECT sum(ent_gado_fisica.`ent_gado_fis_quantCab`) FROM `ent_gado_fisica` ent_gado_fisica WHERE ent_gado_fisica.`ent_gado_fis_nCompra` = $P{codCompra} )as QMIN,
+     ( SELECT sum(ent_gado_fisica.`ent_gado_fis_pesoL`) FROM `ent_gado_fisica` ent_gado_fisica WHERE ent_gado_fisica.`ent_gado_fis_nCompra` = $P{codCompra} )as PesoDestino,
+     compra_gado.`compra_gado_id` AS NCompra,
+     compra_gado.`compra_gado_data` AS dataCompra,
+     compra_gado.`compra_gado_destino` AS destinoCompra,
+     compra_gado.`compra_gado_comprador` AS comprador,
+     compra_gado.`compra_gado_desc` AS descCompra,
+     compra_gado.`compra_gado_negociacao` AS negociacao,
+     compra_gado.`compra_gado_quant` AS QCompra,
+     compra_gado.`compra_gado_precoUnit` AS precoUnit,
+     compra_gado.`compra_gado_ReaisArr` AS ReaisArr,
+     compra_gado.`compra_gado_fornecedor` AS fornecedor,
+     compra_gado.`compra_gado_cpf` AS cpfFornecedor,
+     compra_gado.`compra_gado_pesoUnit` AS pesoUnit,
+     compra_gado.`compra_gado_valorT` AS valorT,
+     compra_gado.`compra_gado_stat` AS statusCompra,
+     ( SELECT sum(ent_gado_nf.`ent_gado_valor_nf`) FROM `ent_gado_nf` ent_gado_nf WHERE ent_gado_nf.`ent_gado_ncompra` = $P{codCompra} ) as ValorNF,
+     ( SELECT sum(ent_gado_nf.`ent_gado_QNF`) FROM `ent_gado_nf` ent_gado_nf WHERE ent_gado_nf.`ent_gado_ncompra` = $P{codCompra} ) as QNF
+FROM
+     `compra_gado` compra_gado
+WHERE
+     compra_gado.`compra_gado_id` = $P{codCompra}]]>
+	</queryString>
+	<field name="ValorPago" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="QGTA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="QMIN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NCompra" class="java.lang.Integer"/>
+	<field name="dataCompra" class="java.sql.Date"/>
+	<field name="destinoCompra" class="java.lang.String"/>
+	<field name="comprador" class="java.lang.String"/>
+	<field name="descCompra" class="java.lang.String"/>
+	<field name="negociacao" class="java.lang.String"/>
+	<field name="QCompra" class="java.lang.Integer"/>
+	<field name="precoUnit" class="java.math.BigDecimal"/>
+	<field name="ReaisArr" class="java.math.BigDecimal"/>
+	<field name="fornecedor" class="java.lang.String"/>
+	<field name="cpfFornecedor" class="java.lang.String"/>
+	<field name="pesoUnit" class="java.math.BigDecimal"/>
+	<field name="valorT" class="java.math.BigDecimal"/>
+	<field name="statusCompra" class="java.lang.String"/>
+	<field name="ValorNF" class="java.math.BigDecimal"/>
+	<field name="QNF" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PesoDestino" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="177" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="60" width="73" height="20" uuid="99854e0f-2703-4041-bdbf-7c78bf5666ad"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Compra]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="73" y="60" width="84" height="20" uuid="6e52a987-1e2b-4987-8ce4-84f099212ace"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataCompra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="183" y="60" width="73" height="20" uuid="5bf424e4-0dd1-488e-a3a6-0d0b938d8c48"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destino]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="256" y="60" width="100" height="20" uuid="95e93d94-d625-4f25-8b5d-bd362d140651"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{destinoCompra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="378" y="60" width="73" height="20" uuid="814d6f9a-fe45-4aa6-85e3-e2f7204b911a"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comprador]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="451" y="60" width="100" height="20" uuid="09792cbb-1f98-4f4f-8c44-a564131c0902"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{comprador}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="571" y="60" width="73" height="20" uuid="0505891a-c751-49f7-96af-8f7151e18c19"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="644" y="60" width="100" height="20" uuid="196c82f1-0e94-4c01-a845-f0d3d98d1883"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descCompra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="91" width="73" height="20" uuid="784ee97a-7a72-4adc-9f74-6bca31bc7eb1"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Negociação]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="91" width="84" height="20" uuid="d546bb4d-34d0-4d80-9559-74cb2efa9964"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{negociacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="119" width="42" height="20" uuid="83fa95d7-8121-4a79-be46-ac022d7fbde7"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quant]]></text>
+			</staticText>
+			<textField pattern="##0 cb" isBlankWhenNull="false">
+				<reportElement x="41" y="119" width="42" height="20" uuid="92e927f8-ceff-4c6e-848b-927139bb6639"/>
+				<textElement textAlignment="Center">
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QCompra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="172" y="91" width="73" height="20" uuid="d11fab6e-d898-4132-accd-f86ebb6cc72c"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preço Unit]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="245" y="91" width="100" height="20" uuid="2c5b5564-838c-4ad4-aa4d-e71dafbca615"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{precoUnit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="357" y="91" width="57" height="20" uuid="ff6217ff-1144-4b72-b7cf-866c07b552ce"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R$ / @]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="414" y="91" width="68" height="20" uuid="9cd3e8e2-5817-4a7d-bff1-10f7bb56a7c7"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ReaisArr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="498" y="91" width="73" height="20" uuid="989aaf5d-aff1-486e-a5ab-afe83795a1f0"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fornecedor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="571" y="91" width="231" height="20" uuid="a3d08e27-0d55-47a3-8f4b-41d8e4b9de3b"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fornecedor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="431" y="119" width="37" height="20" uuid="8d75fc87-1d04-40c5-80f0-15578d54e24a"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="468" y="118" width="93" height="20" uuid="9ee4135c-2bef-47bd-b2d5-106f7e955252"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpfFornecedor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="119" width="73" height="20" uuid="9134f167-c2b3-4c44-8401-9ea697fbf9ea"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quant GTA]]></text>
+			</staticText>
+			<textField pattern="###0 cb" isBlankWhenNull="false">
+				<reportElement x="163" y="118" width="42" height="20" uuid="09e0f074-848e-4465-b6ec-75665041b170"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QGTA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="217" y="119" width="62" height="20" uuid="746564f5-6913-4df5-bd59-f632067e77d6"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quant Min]]></text>
+			</staticText>
+			<textField pattern="###0 cb" isBlankWhenNull="false">
+				<reportElement x="279" y="119" width="42" height="20" uuid="6607f2d6-94ce-48b6-ae59-8f3c19ddc7d0"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QMIN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="149" width="103" height="20" uuid="a4fc72a0-ffa4-4160-96a2-8bf495920c71"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor da Compra]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement x="104" y="149" width="79" height="20" uuid="7e76b83d-1113-4a16-ab7e-8ef992d1fa69"/>
+				<textElement>
+					<font size="11" isBold="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="205" y="149" width="74" height="20" uuid="bf5cbf3d-29e4-4f87-8fe0-c641635f2c14"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Pago]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement x="279" y="149" width="77" height="20" uuid="2f1871ba-9c34-4734-b374-22f99a7999c0"/>
+				<textElement>
+					<font size="11" isBold="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ValorPago}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="335" y="119" width="54" height="20" uuid="153d79f5-e08e-4276-aea9-a5389dd78b14"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quant NF]]></text>
+			</staticText>
+			<textField pattern="###0 cb" isBlankWhenNull="false">
+				<reportElement x="389" y="119" width="42" height="20" uuid="53630f41-171d-4f29-a7f8-10701a73f808"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QNF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="371" y="149" width="80" height="20" uuid="e3403c63-22ad-4e2c-a1c3-21832c31c84a"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor da NF]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement x="451" y="149" width="83" height="20" uuid="001f8b11-0d0f-438d-9cfa-3dabaa30e2c0"/>
+				<textElement>
+					<font size="11" isBold="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ValorNF}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="802" height="1" uuid="f7037d11-7b69-4b49-a975-649535e74b4e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="175" width="802" height="1" uuid="b8477ddb-dadc-4d17-9262-b799e46251ba">
+					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="73" y="1" width="263" height="26" uuid="9f431738-d4ab-4eb1-a224-7195d62ec7bc"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Compra de Gado]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="683" y="27" width="119" height="23" uuid="fd76a3ad-1fd2-4500-ad9d-21fffe679cba"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="73" y="27" width="172" height="23" uuid="8da871b3-30f2-4701-8582-368bb1be9d78"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ordem de Compra Nº]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="245" y="27" width="90" height="23" uuid="46c8b0e0-e557-479b-8d43-c9ab3ed66621"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NCompra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="609" y="27" width="74" height="23" uuid="acdae2e1-bbc5-4f87-aa1a-6877c0ccd391"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Data Atual]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-1" y="50" width="802" height="1" uuid="0562f63e-b19e-4bea-aaa8-c66199f18fc4"/>
+			</line>
+			<staticText>
+				<reportElement x="571" y="119" width="61" height="20" uuid="94cf4103-228c-4357-9e05-0987b72ae058"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso Orig]]></text>
+			</staticText>
+			<textField pattern="##0.0 kg" isBlankWhenNull="false">
+				<reportElement x="632" y="119" width="51" height="20" uuid="a63a457f-280e-4a63-87ad-9bf03e525a92"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesoUnit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="683" y="118" width="61" height="20" uuid="13ab48af-6121-4800-9cd3-ce4062d1ac8f"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso Dest]]></text>
+			</staticText>
+			<textField pattern="##0.0 kg" isBlankWhenNull="false">
+				<reportElement x="744" y="118" width="57" height="20" uuid="59ca167f-bf5f-42ba-bec1-ddac6f25be3d"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{QMIN} > 0 ? $F{PesoDestino} / $F{QMIN} : 0)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="550" y="149" width="69" height="20" uuid="d4d3f337-bd39-4d4e-9e57-cbd7e67d4541"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R$/ @ Dest]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement x="619" y="149" width="53" height="20" uuid="9edee7bd-c753-4085-9b29-fbc2dd374df9"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{PesoDestino} > 0 ? ($F{valorT}/$F{PesoDestino})*30 : 0 )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="683" y="149" width="61" height="20" uuid="8896ac40-d9fc-4f90-986e-68d05a1a4616"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% Quebra]]></text>
+			</staticText>
+			<textField pattern="#,##0.00 %" isBlankWhenNull="false">
+				<reportElement x="744" y="149" width="57" height="20" uuid="b7e98b84-95c6-4b50-a0f2-8a69dcc7cbef"/>
+				<textElement>
+					<font size="11" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{PesoDestino} ? ($F{pesoUnit}/($F{PesoDestino}/$F{QMIN})) - 1 : 0)]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="802" height="40" uuid="a3c32ef3-1a7c-4792-9d1a-7204b78fbd54"/>
+				<subreportParameter name="codCompra">
+					<subreportParameterExpression><![CDATA[$P{codCompra}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RelCompraPagto.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="39">
+			<subreport isUsingCache="false">
+				<reportElement x="0" y="0" width="802" height="36" uuid="2849c502-8ff1-4d73-9c53-db0d9c68921f"/>
+				<subreportParameter name="codCompra">
+					<subreportParameterExpression><![CDATA[$P{codCompra}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RelCompraNF.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="36">
+			<subreport isUsingCache="false">
+				<reportElement x="-1" y="-3" width="802" height="37" uuid="51682051-463d-473e-8578-b51bfd23bc97"/>
+				<subreportParameter name="codCompra">
+					<subreportParameterExpression><![CDATA[$P{codCompra}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RelCompraGTA.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="38">
+			<subreport isUsingCache="false">
+				<reportElement x="-1" y="0" width="802" height="37" uuid="6175b7f7-a3a8-4d31-8f89-e0d53736492f"/>
+				<subreportParameter name="codCompra">
+					<subreportParameterExpression><![CDATA[$P{codCompra}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RelCompraMinuta.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

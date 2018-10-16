@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.5.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DadosdoFuncionarioClassificacao" pageWidth="555" pageHeight="802" whenNoDataType="NoPages" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a8a64d6d-d8d2-4f13-b2f5-01a645007134">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ServidorAEF.xml"/>
+	<parameter name="Codigo_Funcionario" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[$P{Codigo_Funcionario}]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT *FROM cad_funcionarios_classificacao   C
+
+INNER JOIN  cad_fazendas as  F on C.id_fazenda = F.cad_fazendas_id
+INNER JOIN  cad_plano_conta as  P on C.id_plano_contas = P.pc_id
+INNER JOIN  cad_centro_resultado as  R on C.id_centro= R.id
+INNER JOIN  cad_atividade as A on R.id_atividade = A.id
+INNER JOIN  cad_culturas as U on R.id_cultura = U.id
+INNER JOIN  cad_safra as S on R.id_safra = S.cad_safra_id
+INNER JOIN  cad_epocacultivo as E on R.id_cultivo = E.id
+
+
+
+ WHERE 	 C.id_funcionario = $P{Codigo_Funcionario}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_classificacao"/>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_classificacao"/>
+	</field>
+	<field name="id_centro" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id_centro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_classificacao"/>
+	</field>
+	<field name="id_funcionario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_funcionario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_classificacao"/>
+	</field>
+	<field name="id_fazenda" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_fazenda"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_classificacao"/>
+	</field>
+	<field name="id_plano_contas" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_plano_contas"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_classificacao"/>
+	</field>
+	<field name="cad_fazendas_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_id_produtor" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_id_produtor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_tipo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_area" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_area"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_ins_est" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_ins_est"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_end" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_end"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_cidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_cidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_uf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_uf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_stat" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_stat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="cad_fazendas_obs" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_fazendas_obs"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="CidadeBeans_Id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="CidadeBeans_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_fazendas"/>
+	</field>
+	<field name="pc_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="pc_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_plano_conta"/>
+	</field>
+	<field name="pc_conta" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="pc_conta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_plano_conta"/>
+	</field>
+	<field name="pc_descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pc_descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_plano_conta"/>
+	</field>
+	<field name="pc_tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pc_tipo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_plano_conta"/>
+	</field>
+	<field name="pc_status" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="pc_status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_plano_conta"/>
+	</field>
+	<field name="id_grupo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_grupo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_plano_conta"/>
+	</field>
+	<field name="COLUMN_25" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_centro_resultado"/>
+	</field>
+	<field name="status" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_centro_resultado"/>
+	</field>
+	<field name="id_atividade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_atividade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_centro_resultado"/>
+	</field>
+	<field name="id_cultivo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_cultivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_centro_resultado"/>
+	</field>
+	<field name="id_cultura" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_cultura"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_centro_resultado"/>
+	</field>
+	<field name="id_safra" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_safra"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_centro_resultado"/>
+	</field>
+	<field name="COLUMN_31" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_atividade"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_atividade"/>
+	</field>
+	<field name="COLUMN_33" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_atividade"/>
+	</field>
+	<field name="COLUMN_34" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_culturas"/>
+	</field>
+	<field name="cultura" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cultura"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_culturas"/>
+	</field>
+	<field name="COLUMN_36" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_culturas"/>
+	</field>
+	<field name="cad_safra_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cad_safra_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_safra"/>
+	</field>
+	<field name="cad_safra_ano" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cad_safra_ano"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_safra"/>
+	</field>
+	<field name="cad_safra_status" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cad_safra_status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_safra"/>
+	</field>
+	<field name="COLUMN_40" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_epocacultivo"/>
+	</field>
+	<field name="cultivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cultivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_epocacultivo"/>
+	</field>
+	<field name="COLUMN_42" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_epocacultivo"/>
+	</field>
+	<columnHeader>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="1" width="78" height="12" uuid="20cfc589-8d7e-49f1-a6a2-b2ad7a2dc763">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3963e4af-cd47-4201-8f8d-3bbfa2f78cb0"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atividade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="1" width="84" height="12" uuid="abce0ac2-e567-40ff-96d7-a9c8a180b4c8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f383059-56da-4e16-a4fa-7d528f75e565"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fazendas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="1" width="150" height="12" uuid="f0686c94-1683-44db-bb62-24065c08a0b1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="28740ab0-9b50-442e-8574-64a261bde235"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plano de Contas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="504" y="1" width="50" height="12" uuid="eafb0444-813a-4c51-93f8-3e1326b7cc55">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="69768a87-6c75-4610-a4aa-07785c6ece75"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="1" width="68" height="12" uuid="f232acea-d61d-4384-9e93-2de8ef12364c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3963e4af-cd47-4201-8f8d-3bbfa2f78cb0"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cultura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="1" width="52" height="12" uuid="ef0e1b92-7656-4df4-bdfc-e9d8b10604e8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3963e4af-cd47-4201-8f8d-3bbfa2f78cb0"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cultivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="1" width="70" height="12" uuid="b761f488-b674-402c-abbc-0a095b61f3f6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3963e4af-cd47-4201-8f8d-3bbfa2f78cb0"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ano da Safra]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField pattern="#00.00%">
+				<reportElement x="504" y="1" width="50" height="12" uuid="405eb235-6232-45f4-ac46-f2ec159a8c3d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="69768a87-6c75-4610-a4aa-07785c6ece75"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}/100]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="13" width="549" height="1" uuid="784104b1-be2f-4d67-b2b0-88b426f5a4e8"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="81" y="1" width="68" height="12" uuid="c6e05fc3-783e-40b9-8cbf-2bbc8fd16000">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="516167f3-5064-4761-b719-22a5b5187822"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cultura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="1" width="70" height="12" uuid="275d025b-b657-4679-aba3-129ae158fd3a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="099dc784-4d34-4215-939a-30966b7b3741"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cad_safra_ano}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="1" width="51" height="12" uuid="bb52bf1e-4122-4130-88da-b969b3a3bca8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="46818fba-ad52-461f-92b1-1256986dfeae"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cultivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="1" width="79" height="12" uuid="77a74d3f-80ce-4c1c-b751-bbdb86de77e5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="21ee9baa-9000-4a00-8d5a-cbd62d52e305"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="1" width="150" height="12" uuid="8387011c-5f8f-4f31-bb55-470c34b0fa7f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c703126d-a00d-4534-94c2-f8e7d5152c08"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pc_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="1" width="84" height="12" uuid="76222705-aaca-416a-b92d-b4d7e12274f1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8663d426-1db7-48f9-9218-d31d515015e8"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cad_fazendas_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

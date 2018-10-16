@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelCompraMinuta" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="30623250-f6e9-43df-9c2d-f3b59e93acd8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="71"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codCompra" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ent_gado_fisica.`ent_gado_fis_nromaneio` AS nromaneio,
+     ent_gado_fisica.`ent_gado_fis_DataFis` AS DataFisica,
+     ent_gado_fisica.`ent_gado_fis_placa` AS placa,
+     ent_gado_fisica.`ent_gado_fis_quantCab` AS QtDestino,
+     ent_gado_fisica.`ent_gado_fis_QtOrigem` AS QtOrigem,
+     ent_gado_fisica.`ent_gado_fis_pesoM` AS pesoM,
+     ent_gado_fisica.`ent_gado_fis_km` AS km,
+     ent_gado_fisica.`ent_gado_fis_nRefugo` AS Refugo,
+     ent_gado_fisica.`ent_gado_fis_destFisico` AS destinoFisico,
+     ent_gado_fisica.`ent_gado_fis_cat` AS categoria,
+     ent_gado_fisica.`ent_gado_fis_trans` AS transportadora,
+     ent_gado_fisica.`ent_gado_fis_nMin` AS nMin,
+     ent_gado_fisica.`ent_gado_fis_vlrFrete` AS VlrFrete
+FROM
+     `ent_gado_fisica` ent_gado_fisica
+WHERE
+     ent_gado_fisica.`ent_gado_fis_nCompra` = $P{codCompra}
+ AND ent_gado_fisica.`ent_gado_fis_quantCab` > 0]]>
+	</queryString>
+	<field name="nromaneio" class="java.lang.Integer"/>
+	<field name="DataFisica" class="java.sql.Date"/>
+	<field name="placa" class="java.lang.String"/>
+	<field name="QtDestino" class="java.lang.Integer"/>
+	<field name="QtOrigem" class="java.lang.Integer"/>
+	<field name="pesoM" class="java.math.BigDecimal"/>
+	<field name="km" class="java.lang.Integer"/>
+	<field name="Refugo" class="java.lang.String"/>
+	<field name="destinoFisico" class="java.lang.String"/>
+	<field name="categoria" class="java.lang.String"/>
+	<field name="transportadora" class="java.lang.String"/>
+	<field name="nMin" class="java.lang.String"/>
+	<field name="VlrFrete" class="java.math.BigDecimal"/>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="22" width="67" height="20" uuid="e7574f83-9720-43d1-8d7b-c79e2474a185"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Romaneio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="22" width="81" height="20" uuid="bc5e8394-90fe-4919-83f9-88576fb4da1b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data da Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="22" width="100" height="20" uuid="117c14de-2cdd-4417-b9c7-a0b8e70e8497"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Placa Veículo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="22" width="131" height="20" uuid="5fa1a0c3-b0d6-4f53-8be5-395b9e356cd9"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transportadora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="22" width="78" height="20" uuid="2357e63e-aa50-43df-b117-f5ac7ee4dbd3"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Minuta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="22" width="50" height="20" uuid="af9b7166-6c9a-42cd-9e4b-1f527d424de1"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Km]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="507" y="22" width="77" height="20" uuid="3abeb414-c704-401a-a276-ca24cee974c5"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quant. Destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="584" y="22" width="79" height="20" uuid="5597eaa3-1c7d-4990-b554-8a5e77814d0b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quant. Origem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="663" y="22" width="70" height="20" uuid="c94d50ef-03e1-41b2-8722-1b742f7dcb55"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso Médio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="22" uuid="c431419e-8c57-4eb0-b145-12a96d518f5d"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumo das Minutas de Entrada]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="42" width="842" height="1" uuid="9990414b-fe80-4dab-b587-1ab9350d4451"/>
+			</line>
+			<staticText>
+				<reportElement x="733" y="22" width="81" height="20" uuid="697981bd-bbb3-49e5-883b-8317c174c43c"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor do Frete]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="67" height="20" uuid="dca2f5c2-e872-4069-9460-82f117a62d4f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nromaneio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="67" y="0" width="81" height="20" uuid="ae6f92dc-c5c8-4286-87a0-a2c3f19b9cfe"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DataFisica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="0" width="100" height="20" uuid="e77d531d-e892-4c8f-b824-3ee530bdedc3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="0" width="131" height="20" uuid="1d3e032d-a5b6-4e5f-9e53-262ba8271899"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{transportadora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="0" width="78" height="20" uuid="37ca38a7-6090-45e4-a6e1-9b274e52e501"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nMin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="0" width="50" height="20" uuid="15ddbd8e-4664-475a-b758-0bc96a4fca57"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{km}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0 cb">
+				<reportElement x="507" y="0" width="77" height="20" uuid="86f56e6e-c2b1-45ab-b7c4-e473227389fa"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{QtDestino}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0 cb">
+				<reportElement x="584" y="0" width="79" height="20" uuid="c002a30e-7a24-40c1-88f6-74c25b73add0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{QtOrigem}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0 kg">
+				<reportElement x="663" y="0" width="70" height="20" uuid="cd2cb0ff-f72d-4348-951b-886ce9e3d58f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pesoM}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="842" height="1" uuid="9bfeffab-af68-4526-b995-ed9ff6b38951"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="733" y="0" width="81" height="20" uuid="d9b5cdde-fd5b-4c87-aedd-f799979e3ce3"/>
+				<textFieldExpression><![CDATA[$F{VlrFrete}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

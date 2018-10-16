@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pedidoFazenda" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57d305cd-30dc-4987-b28e-3a68a7712879">
+	<property name="ireport.zoom" value="0.9090909090909091"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style/>
+		</conditionalStyle>
+	</style>
+	<parameter name="nPedido" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.awt.Image" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pedidos_almoxarifado_itens.`n_item` AS pedido_almoxarifado_itens_n_item,
+     pedidos_almoxarifado_itens.`codigo` AS pedido_almoxarifado_itens_codigo,
+     pedidos_almoxarifado_itens.`descricao` AS pedido_almoxarifado_itens_descricao,
+     pedidos_almoxarifado_itens.`quantidade` AS pedido_almoxarifado_itens_quantidade,
+     pedidos_almoxarifado_itens.`unidade` AS pedido_almoxarifado_itens_unidade,
+     pedidos_almoxarifado_itens.`solicitante` AS pedido_almoxarifado_itens_solicitante,
+     pedidos_almoxarifado_itens.`urgencia` AS pedido_almoxarifado_itens_urgencia,
+     p.`data` AS p_data,
+     p.`status_emissao` AS p_status_emissao,
+     cad_fazendas.`cad_fazendas_nome` AS cad_fazendas_cad_fazendas_nome,
+     p.`id` AS p_id,
+     cad_inventario.`n_frota` AS cad_inventario_n_frota,
+     cad_setor_servico.`descricao` AS cad_setor_servico_descricao
+FROM
+     `pedidos_almoxarifado_itens` pedidos_almoxarifado_itens INNER JOIN `pedidos_almoxarifado` p ON pedidos_almoxarifado_itens.`pedidos_almoxarifado_id` = p.`id`
+     INNER JOIN `cad_fazendas` cad_fazendas ON p.`id_fazenda` = cad_fazendas.`cad_fazendas_id`
+     LEFT JOIN `cad_inventario` cad_inventario ON pedidos_almoxarifado_itens.`id_inventario` = cad_inventario.`id`
+     LEFT JOIN `cad_setor_servico` cad_setor_servico ON pedidos_almoxarifado_itens.`id_setor` = cad_setor_servico.`id`
+WHERE
+     p.id = $P{nPedido}]]>
+	</queryString>
+	<field name="pedido_almoxarifado_itens_n_item" class="java.lang.Integer"/>
+	<field name="pedido_almoxarifado_itens_codigo" class="java.lang.String"/>
+	<field name="pedido_almoxarifado_itens_descricao" class="java.lang.String"/>
+	<field name="pedido_almoxarifado_itens_quantidade" class="java.lang.Double"/>
+	<field name="pedido_almoxarifado_itens_unidade" class="java.lang.String"/>
+	<field name="pedido_almoxarifado_itens_solicitante" class="java.lang.String"/>
+	<field name="pedido_almoxarifado_itens_urgencia" class="java.lang.String"/>
+	<field name="p_data" class="java.sql.Date"/>
+	<field name="p_status_emissao" class="java.lang.Boolean"/>
+	<field name="cad_fazendas_cad_fazendas_nome" class="java.lang.String"/>
+	<field name="p_id" class="java.lang.Long"/>
+	<field name="cad_inventario_n_frota" class="java.lang.String"/>
+	<field name="cad_setor_servico_descricao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105">
+			<rectangle radius="10">
+				<reportElement x="0" y="1" width="802" height="101" uuid="8a140bc3-702b-4a31-84ca-495574715d75"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="13" y="76" width="90" height="25" uuid="3d72e95a-f2c7-4155-95cd-ac0581438812"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="18"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Fazenda:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="103" y="76" width="154" height="25" uuid="2b7a6376-9df0-491b-b202-9efef228e436"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cad_fazendas_cad_fazendas_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="259" y="76" width="102" height="25" uuid="1a1efd85-d740-48bb-85d1-5643c34b06d7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="18"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Pedido Nº:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="76" width="130" height="25" uuid="13479c4c-2443-449c-9639-c1ea90e0601e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="18"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Data Emissão:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="575" y="76" width="126" height="25" uuid="a651f373-6e89-4283-898b-0ce2aee12c63"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p_data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="76" width="84" height="25" uuid="6fec2b3c-4b60-4f6c-bd1e-c5232a9cad98"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p_id}]]></textFieldExpression>
+			</textField>
+			<image isLazy="true">
+				<reportElement x="713" y="17" width="65" height="69" uuid="8568afb3-0421-45a4-9d46-29c59000c755"/>
+				<imageExpression><![CDATA[$P{caminhoLogo} != null  ?  $P{caminhoLogo} :
+       "C:\\Users\\agroa\\Desktop\\SistemaAEF\\src\\Icones\\iconeAEF.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="1" width="802" height="46" uuid="dce08a41-8ade-4723-8bfc-6de189c08592"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Black" size="32"/>
+				</textElement>
+				<text><![CDATA[Alceu Elias Feldmann]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="46" width="402" height="30" uuid="5d4f1d50-d57f-46cb-b597-a13f81528f09"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Pedido de Mercadoria]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="42" height="20" uuid="65c8fb9d-2782-4115-9a85-4491d532b38c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="16" width="110" height="20" uuid="cccbd334-4a41-41ea-91f6-46ae1a2070ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="16" width="209" height="20" uuid="40a1151c-3d0c-40d5-a5ba-e91572972057"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="16" width="54" height="20" uuid="e9f54137-4fad-4a4b-8304-3b0d668e8951"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quant.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="16" width="59" height="20" uuid="4166d515-9291-4be9-941b-c5b5b3d16658"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unid.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="16" width="68" height="20" uuid="814bb234-48d5-4b53-91e7-d11610eb7219"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inventário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="542" y="16" width="59" height="20" uuid="aaca5f6d-4fac-4e5e-beb1-3fe225cec8a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Urgencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="601" y="16" width="100" height="20" uuid="17c8edb6-4ed3-45ba-9f38-ce8c84556c39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Setor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="35" width="802" height="1" uuid="30efaeca-715b-481e-83f1-7837798ba672"/>
+			</line>
+			<staticText>
+				<reportElement x="702" y="16" width="100" height="20" uuid="faadfb76-3d04-4c9c-9570-54ef09aaecae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solicitante]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement style="style1" mode="Opaque" x="0" y="0" width="802" height="20" backcolor="#CCCCFF" uuid="30eac25c-6802-409f-92d3-27eda806bace">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) != 0)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="42" height="20" uuid="f1f6f7ca-dfe0-4e3d-ad07-b2409fdedaf9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pedido_almoxarifado_itens_n_item}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="0" width="110" height="20" uuid="757be5d6-b584-4750-8f0f-12ad5bf7bc6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pedido_almoxarifado_itens_codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="0" width="208" height="20" uuid="8fdd303c-195a-4820-b470-4e672ca0a16a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pedido_almoxarifado_itens_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="0" width="54" height="20" uuid="4d985e9b-99ea-47ac-ab35-14341362c6f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pedido_almoxarifado_itens_quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="0" width="59" height="20" uuid="5bcbb4df-f12b-44db-bfa1-0fe7975d6f92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pedido_almoxarifado_itens_unidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="68" height="20" uuid="32b5880b-61a8-45b7-a1cc-dcf16e51e79e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{cad_inventario_n_frota}.equals(null) ? "-" :
+    $F{cad_inventario_n_frota}
+)]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="542" y="0" width="59" height="20" uuid="7a025ea4-9227-4b60-8beb-7c3bc7057e09"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{pedido_almoxarifado_itens_urgencia}.equals(null) ? "-" :
+    $F{pedido_almoxarifado_itens_urgencia})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="601" y="0" width="100" height="20" uuid="048ad729-b81c-471c-8b68-f501ad9622cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{cad_setor_servico_descricao}.equals(null) ? "-" :
+    $F{cad_setor_servico_descricao})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="0" width="100" height="20" uuid="83cc23da-51ee-4d06-89ac-dd7afdbbe32d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pedido_almoxarifado_itens_solicitante}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="63">
+			<line>
+				<reportElement x="531" y="42" width="198" height="1" uuid="b0a0cf93-ee97-4777-b0db-fff44d2d5ac9"/>
+			</line>
+			<staticText>
+				<reportElement x="601" y="43" width="59" height="20" uuid="3f784458-e239-475e-b0ab-81c4367ffee5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gerente]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

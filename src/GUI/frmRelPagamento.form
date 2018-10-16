@@ -1,0 +1,1360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+    <Container class="javax.swing.JPopupMenu" name="jPopMenu">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuEditarPagto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Editar Pagamento"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuEditarPagtoActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+          </AuxValues>
+        </MenuItem>
+      </SubComponents>
+    </Container>
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Exibir"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="menuDespFazenda">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Despesas por Fazenda"/>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="menuDespFazendaItemStateChanged"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="menuDespPlano">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Despesas por Centro de Custo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="menuDespPlanoItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDespPlanoActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="menuDespPagto">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Documentos Fiscais"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDespPagtoActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="menuDesoDiario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Despesas Di&#xe1;rias"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDesoDiarioActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jm_previsaoPagto">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Previs&#xe3;o de Pagamentos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jm_previsaoPagtoActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator5">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jm_extrato_cc">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Extrato Banc&#xe1;rio"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jm_extrato_ccActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator6">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jm_despesa_inventario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Despesas por Invent&#xe1;rio"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jm_despesa_inventarioActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator7">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jm_exportarContas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exportar Plano de Contas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jm_exportarContasActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="iconifiable" type="boolean" value="true"/>
+    <Property name="maximizable" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="true"/>
+    <Property name="title" type="java.lang.String" value="Relat&#xf3;rio de Pagamentos"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-99,0,0,5,86"/>
+    <SyntheticProperty name="formPosition" type="java.awt.Point" value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,97,119,116,46,80,111,105,110,116,-74,-60,-118,114,52,126,-56,38,2,0,2,73,0,1,120,73,0,1,121,120,112,0,0,0,0,0,0,0,0"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
+    <SyntheticProperty name="generatePosition" type="boolean" value="true"/>
+    <SyntheticProperty name="generateSize" type="boolean" value="true"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="0"/>
+  </AuxValues>
+
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+    <Property name="useNullLayout" type="boolean" value="true"/>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JInternalFrame" name="frmPagamentos">
+      <Properties>
+        <Property name="closable" type="boolean" value="true"/>
+        <Property name="iconifiable" type="boolean" value="true"/>
+        <Property name="maximizable" type="boolean" value="true"/>
+        <Property name="resizable" type="boolean" value="true"/>
+        <Property name="title" type="java.lang.String" value="Consulta de Pagamentos"/>
+        <Property name="visible" type="boolean" value="false"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+      </AuxValues>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="140" y="10" width="-1" height="600"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel4" alignment="1" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel4">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane3" max="32767" attributes="0"/>
+                          <Component id="jXTaskPane1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jXTaskPane1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" pref="414" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tb_nfPagtos">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="12" rowCount="0">
+                        <Column editable="false" title="Id Pagto" type="java.lang.Object"/>
+                        <Column editable="false" title="Conta Origem" type="java.lang.Object"/>
+                        <Column editable="false" title="Emiss&#xe3;o" type="java.lang.Object"/>
+                        <Column editable="false" title="Pagamento" type="java.lang.Object"/>
+                        <Column editable="false" title="Emissor" type="java.lang.Object"/>
+                        <Column editable="false" title="Nome Fantasia" type="java.lang.Object"/>
+                        <Column editable="false" title="CNPJ / CPF" type="java.lang.Object"/>
+                        <Column editable="false" title="Tipo Despesa" type="java.lang.Object"/>
+                        <Column editable="false" title="Plano Conta" type="java.lang.Object"/>
+                        <Column editable="false" title="Tipo Doc" type="java.lang.Object"/>
+                        <Column editable="false" title="N&#xba; Doc." type="java.lang.Object"/>
+                        <Column editable="false" title="Valor" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="40" minWidth="40" prefWidth="40" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="90" minWidth="90" prefWidth="90" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="90" minWidth="90" prefWidth="90" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="0" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="160" minWidth="140" prefWidth="160" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="110" minWidth="110" prefWidth="110" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="90" minWidth="90" prefWidth="90" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="120" minWidth="100" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[2147483647, 2147483647]"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="frmPagamentos"/>
+                    </Property>
+                  </AccessibilityProperties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_nfPagtosMouseClicked"/>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_nfPagtosMousePressed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="frmRelPagamento_tb_nfPagtos"/>
+                    <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="org.jdesktop.swingx.JXTaskPane" name="jXTaskPane1">
+              <Properties>
+                <Property name="title" type="java.lang.String" value="Op&#xe7;&#xf5;es de Pesquisa"/>
+              </Properties>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel7">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_dtInicialPagto" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_dtFinalPagto" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cb_bancoOrigem" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cb_tipoDespesa" min="-2" pref="138" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cb_tipoDocPagto" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_nDocPagto" min="-2" pref="107" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel18" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cb_formaPagto" max="32767" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_favorecidoPagto" min="-2" pref="297" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btn_pesqFornecedor" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="cb_doc" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_cpf" min="-2" pref="139" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_valorPagto" min="-2" pref="118" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btn_pesqPagto" pref="141" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="2" attributes="0">
+                                          <Component id="jLabel5" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="txt_dtInicialPagto" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="jLabel6" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="txt_dtFinalPagto" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="jLabel16" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="cb_tipoDespesa" alignment="2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel7" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="cb_tipoDocPagto" alignment="2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="txt_nDocPagto" alignment="2" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="2" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel17" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <Component id="cb_bancoOrigem" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="2" attributes="0">
+                                          <Component id="jLabel9" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="txt_favorecidoPagto" alignment="2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel11" alignment="2" max="-2" attributes="0"/>
+                                          <Component id="txt_valorPagto" alignment="2" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="2" groupAlignment="3" attributes="0">
+                                              <Component id="cb_doc" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txt_cpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="btn_pesqFornecedor" alignment="2" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="2" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel18" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <Component id="cb_formaPagto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="btn_pesqPagto" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel5">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="De"/>
+                      </Properties>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="txt_dtInicialPagto">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new JDateChooser(&quot;dd/MM/yyyy&quot;, &quot;##/##/#####&quot;, &apos;_&apos;)"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel6">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="&#xe0;"/>
+                      </Properties>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="txt_dtFinalPagto">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new JDateChooser(&quot;dd/MM/yyyy&quot;, &quot;##/##/#####&quot;, &apos;_&apos;)"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btn_pesqPagto">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Pesquisar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_pesqPagtoActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel7">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Tipo Doc"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cb_tipoDocPagto">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="27">
+                            <StringItem index="0" value="-"/>
+                            <StringItem index="1" value="DANFE"/>
+                            <StringItem index="2" value="Recibo"/>
+                            <StringItem index="3" value="CTR"/>
+                            <StringItem index="4" value="S/ Doc. Fiscal"/>
+                            <StringItem index="5" value="N.F Faltando"/>
+                            <StringItem index="6" value="Comprovante"/>
+                            <StringItem index="7" value="FGTS"/>
+                            <StringItem index="8" value="Recibo Fiscal"/>
+                            <StringItem index="9" value="C.F"/>
+                            <StringItem index="10" value="Rescis&#xe3;o"/>
+                            <StringItem index="11" value="N.F"/>
+                            <StringItem index="12" value="C&#xe9;dula Rural"/>
+                            <StringItem index="13" value="DARE"/>
+                            <StringItem index="14" value="DARF"/>
+                            <StringItem index="15" value="INSS"/>
+                            <StringItem index="16" value="Transf. Banc&#xe1;ria"/>
+                            <StringItem index="17" value="Resgate"/>
+                            <StringItem index="18" value="T&#xe1;rifa Banc&#xe1;ria"/>
+                            <StringItem index="19" value="T&#xed;tulo Capital."/>
+                            <StringItem index="20" value="Poupan&#xe7;a"/>
+                            <StringItem index="21" value="CDB"/>
+                            <StringItem index="22" value="LCA"/>
+                            <StringItem index="23" value="Ajuste"/>
+                            <StringItem index="24" value="Sal&#xe1;rio"/>
+                            <StringItem index="25" value="NDF"/>
+                            <StringItem index="26" value="SM"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel8">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="N&#xba; Doc"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="txt_nDocPagto">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel9">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Favorecido"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="txt_favorecidoPagto">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel11">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Valor"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="txt_valorPagto">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel16">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Tipo Despesa"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cb_tipoDespesa">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="-"/>
+                            <StringItem index="1" value="Custeio"/>
+                            <StringItem index="2" value="Investimento"/>
+                            <StringItem index="3" value="Compra de Gado"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cb_doc">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="-"/>
+                            <StringItem index="1" value="CPF"/>
+                            <StringItem index="2" value="CNPJ"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cb_docItemStateChanged"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JFormattedTextField" name="txt_cpf">
+                      <Events>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_cpfFocusLost"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btn_pesqFornecedor">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/Icones/buscar pequeno.png"/>
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[30, 25]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_pesqFornecedorActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel17">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Conta de Origem"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cb_bancoOrigem">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Beans.ContaBancariaBeans&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel18">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Forma Pagamento"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cb_formaPagto">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="8">
+                            <StringItem index="0" value="-"/>
+                            <StringItem index="1" value="Cheque em M&#xe3;os"/>
+                            <StringItem index="2" value="Cheque Deposito"/>
+                            <StringItem index="3" value="Em Esp&#xe9;cie"/>
+                            <StringItem index="4" value="Boleto"/>
+                            <StringItem index="5" value="Formul&#xe1;rio TED"/>
+                            <StringItem index="6" value="Transfer&#xea;ncia"/>
+                            <StringItem index="7" value="Internet Banking"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cb_formaPagtoItemStateChanged"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+              <LayoutCode>
+                <CodeStatement>
+                  <CodeExpression id="1_verticalLayout1">
+                    <CodeVariable name="verticalLayout1" type="4096" declaredType="org.jdesktop.swingx.VerticalLayout"/>
+                    <ExpressionOrigin>
+                      <ExpressionProvider type="CodeConstructor">
+                        <CodeConstructor class="org.jdesktop.swingx.VerticalLayout" parameterTypes=""/>
+                      </ExpressionProvider>
+                    </ExpressionOrigin>
+                  </CodeExpression>
+                  <StatementProvider type="CodeExpression">
+                    <CodeExpression id="1_verticalLayout1"/>
+                  </StatementProvider>
+                </CodeStatement>
+                <CodeStatement>
+                  <CodeExpression id="1_verticalLayout1"/>
+                  <StatementProvider type="CodeMethod">
+                    <CodeMethod name="setGap" class="org.jdesktop.swingx.VerticalLayout" parameterTypes="int"/>
+                  </StatementProvider>
+                  <Parameters>
+                    <CodeExpression id="2">
+                      <ExpressionOrigin>
+                        <Value type="int" value="2"/>
+                      </ExpressionOrigin>
+                    </CodeExpression>
+                  </Parameters>
+                </CodeStatement>
+                <CodeStatement>
+                  <CodeExpression id="3">
+                    <ExpressionOrigin>
+                      <CodeExpression id="4_jXTaskPane1">
+                        <CodeVariable name="jXTaskPane1" type="20480" declaredType="org.jdesktop.swingx.JXTaskPane"/>
+                        <ExpressionOrigin>
+                          <ExpressionProvider type="ComponentRef">
+                            <ComponentRef name="jXTaskPane1"/>
+                          </ExpressionProvider>
+                        </ExpressionOrigin>
+                      </CodeExpression>
+                      <ExpressionProvider type="CodeMethod">
+                        <CodeMethod name="getContentPane" class="org.jdesktop.swingx.JXTaskPane" parameterTypes=""/>
+                      </ExpressionProvider>
+                    </ExpressionOrigin>
+                  </CodeExpression>
+                  <StatementProvider type="CodeMethod">
+                    <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
+                  </StatementProvider>
+                  <Parameters>
+                    <CodeExpression id="1_verticalLayout1"/>
+                  </Parameters>
+                </CodeStatement>
+              </LayoutCode>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JInternalFrame" name="frmPlanoContas">
+      <Properties>
+        <Property name="closable" type="boolean" value="true"/>
+        <Property name="iconifiable" type="boolean" value="true"/>
+        <Property name="resizable" type="boolean" value="true"/>
+        <Property name="title" type="java.lang.String" value="Relat&#xf3;rio de Plano de Contas"/>
+        <Property name="visible" type="boolean" value="false"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+      </AuxValues>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="10" y="10" width="790" height="540"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jPanel5" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel5">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="1" min="-2" pref="317" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane4" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="jPanel6" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="142" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" pref="296" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane4" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel6">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+                <Property name="doubleBuffered" type="boolean" value="false"/>
+                <Property name="focusCycleRoot" type="boolean" value="true"/>
+                <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
+                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPanel6FocusLost"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+              </AuxValues>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jLayer1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLayer1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JLayeredPane" name="jLayer1">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                  </AuxValues>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_dtInicialPC" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="txt_dtFinalPC" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cb_fazendaPC" pref="116" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                                      <Component id="ch_PlanoCompleto" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_contaInicial" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_contaFinal" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_nFrota" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cb_contaOrigem" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btn_pesqPlanoConta" pref="99" max="32767" attributes="0"/>
+                                  <Component id="btn_pesqPlanoConta1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="btn_pesqPlanoConta" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox2" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ch_PlanoCompleto" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="txt_dtFinalPC" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_dtInicialPC" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="cb_fazendaPC" alignment="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="jLabel12" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="cb_contaOrigem" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_contaInicial" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="txt_contaFinal" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_pesqPlanoConta1" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="txt_nFrota" alignment="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel3">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="De"/>
+                      </Properties>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="txt_dtInicialPC">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new JDateChooser(&quot;dd/MM/yyyy&quot;, &quot;##/##/#####&quot;, &apos;_&apos;)"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel4">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="&#xe0;"/>
+                      </Properties>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="txt_dtFinalPC">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new JDateChooser(&quot;dd/MM/yyyy&quot;, &quot;##/##/#####&quot;, &apos;_&apos;)"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btn_pesqPlanoConta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Pesquisar"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_pesqPlanoContaActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel10">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Fazenda"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="ch_PlanoCompleto">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroup1"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Completo"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroup1"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" value="Sint&#xe9;tico"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cb_fazendaPC">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Object&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel12">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Conta de Origem"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cb_contaOrigem">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Beans.ContaBancariaBeans&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="txt_contaInicial">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_contaInicialFocusLost"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel13">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Plano de Contas"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel14">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="&#xe0;"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="txt_contaFinal">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_contaFinalFocusLost"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btn_pesqPlanoConta1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Imprimir"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel15">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="N&#xba; de Frota"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="txt_nFrota">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_nFrotaFocusLost"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tb_contaOrigem">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="false" title="ID" type="java.lang.Object"/>
+                        <Column editable="false" title="Conta" type="java.lang.Object"/>
+                        <Column editable="false" title="Valor" type="java.lang.Object"/>
+                        <Column editable="false" title="%" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="autoResizeMode" type="int" value="0"/>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="30" minWidth="30" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="120" minWidth="70" prefWidth="90" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="150" minWidth="120" prefWidth="120" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tb_despesasFazendas">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="false" title="ID" type="java.lang.Object"/>
+                        <Column editable="false" title="Fazenda" type="java.lang.Object"/>
+                        <Column editable="false" title="Valor" type="java.lang.Object"/>
+                        <Column editable="false" title="%" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="120" minWidth="70" prefWidth="90" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="150" minWidth="120" prefWidth="120" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="requestFocusEnabled" type="boolean" value="false"/>
+                <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tb_planoContas">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="7" rowCount="0">
+                        <Column editable="false" title="Conta" type="java.lang.Object"/>
+                        <Column editable="false" title="Plano de Contas" type="java.lang.Object"/>
+                        <Column editable="true" title="ID Pagto" type="java.lang.Object"/>
+                        <Column editable="true" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
+                        <Column editable="true" title="Fazenda" type="java.lang.Object"/>
+                        <Column editable="false" title="Valor Total" type="java.lang.Object"/>
+                        <Column editable="false" title="%" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="70" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="170" minWidth="100" prefWidth="150" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="130" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="80" minWidth="80" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="frmPlanoContas"/>
+                    </Property>
+                  </AccessibilityProperties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_planoContasMouseClicked"/>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_planoContasMousePressed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

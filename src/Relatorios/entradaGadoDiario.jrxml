@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="entradaGadoDiario" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4be79927-53aa-4152-91cd-817188e87e22">
+	<property name="ireport.zoom" value="1.1000000000000003"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="30"/>
+	<parameter name="Destino" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dtInicial" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dtFinal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.awt.Image" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NomeUsuario" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT Distinct
+    ent_gado_fis_id as Id,
+    ent_gado_fis_DataFis as DataEntrada,
+    ent_gado_fis_destFisico AS Destino,
+    nf.ent_gado_motivo as Motivo,
+    IF(nf.ent_gado_motivo like '%Trans%', nf.ent_gado_fazOrigem, ifnull((select compra_gado_comprador from compra_gado where compra_gado_id = ent_gado_fis_nCompra),0) )AS Origem,
+    ent_gado_fis_placa as Placa,
+    ent_gado_fis_nMin as nMin,
+    ent_gado_fis_quantCab AS Qmin,
+    ent_gado_fis_QtOrigem AS QOrigem,
+    ent_gado_fis_pesoM AS PesoM
+FROM
+    ent_gado_fisica fis, (select Distinct(ent_gado_romaneio) , ent_gado_motivo, ent_gado_fazOrigem from  ent_gado_nf) nf
+WHERE
+	ent_gado_fis_DataFis BETWEEN $P{dtInicial} AND $P{dtFinal} and nf.ent_gado_romaneio = ent_gado_fis_nromaneio
+	and fis.ent_gado_fis_destFisico IN ($P!{Destino})
+ORDER BY DataEntrada asc, Origem ASC;]]>
+	</queryString>
+	<field name="Id" class="java.lang.Integer"/>
+	<field name="DataEntrada" class="java.sql.Date"/>
+	<field name="Destino" class="java.lang.String"/>
+	<field name="Motivo" class="java.lang.String"/>
+	<field name="Origem" class="java.lang.String"/>
+	<field name="Placa" class="java.lang.String"/>
+	<field name="nMin" class="java.lang.String"/>
+	<field name="Qmin" class="java.lang.Integer"/>
+	<field name="QOrigem" class="java.lang.Integer"/>
+	<field name="PesoM" class="java.lang.Double"/>
+	<variable name="SomaQMin" class="java.lang.Integer" resetType="Group" resetGroup="Origem" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{Qmin})]]></variableExpression>
+	</variable>
+	<variable name="SomaQMinData" class="java.lang.Integer" resetType="Group" resetGroup="Data" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{Qmin})]]></variableExpression>
+	</variable>
+	<variable name="SomaQDestino" class="java.lang.Integer" resetType="Group" resetGroup="Destino" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{Qmin})]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="SomaPeso" class="java.lang.Double" resetType="Group" resetGroup="Origem" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{Qmin} * $F{PesoM})]]></variableExpression>
+	</variable>
+	<variable name="SomaPesoDia" class="java.lang.Double" resetType="Group" resetGroup="Data" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{Qmin} * $F{PesoM})]]></variableExpression>
+	</variable>
+	<group name="Destino">
+		<groupExpression><![CDATA[$F{Destino}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="100" height="20" uuid="7e0a0353-4579-4a0a-8d39-1a07f5aae8ef"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Destino}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement key="1" x="431" y="0" width="52" height="20" uuid="80bcfba1-824e-46ec-b7ca-b34fadc81fcb"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SomaQDestino}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="100" y="0" width="331" height="20" uuid="50bfe223-7379-4312-bae3-02c64f458555"/>
+					<textElement textAlignment="Right">
+						<font size="11" isBold="true"/>
+						<paragraph rightIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total de Entrada - " + $F{Destino}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Data">
+		<groupExpression><![CDATA[$F{DataEntrada}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField pattern="dd/MMM/yy">
+					<reportElement x="23" y="0" width="100" height="20" uuid="7ccba549-f102-4dab-b821-7ca50cec18d9"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DataEntrada}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="20" width="555" height="1" uuid="3b3ef5cf-76bc-4145-957f-980a8a63eb72"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="100" y="0" width="331" height="20" uuid="7920c5d0-56ca-47cb-8ff1-c260aa38f84f"/>
+					<textElement textAlignment="Right">
+						<font size="11" isBold="true"/>
+						<paragraph rightIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total de Entrada Dia"]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="431" y="0" width="52" height="20" uuid="9b3d9844-7cff-42f9-bdfe-d637b5359f3c"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SomaQMinData}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0 kg">
+					<reportElement x="483" y="0" width="52" height="20" uuid="316a6489-e38a-4975-aaf1-0a3d67acc41f"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SomaPesoDia} /$V{SomaQMinData}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Origem">
+		<groupExpression><![CDATA[$F{Origem}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="44" y="0" width="100" height="20" uuid="4b4599b1-f943-4536-aa5c-ddcb8f60c8f6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Origem}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="22">
+				<line>
+					<reportElement x="44" y="1" width="511" height="1" uuid="e550972a-6dda-4b89-b2de-227ffeae414f"/>
+				</line>
+				<textField>
+					<reportElement x="167" y="2" width="264" height="20" uuid="4ec2ef34-d5b8-4b8f-b712-35aab8e816c5"/>
+					<textElement textAlignment="Right">
+						<font size="11" isBold="true"/>
+						<paragraph rightIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total de " + $F{Motivo}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="431" y="2" width="52" height="20" uuid="70f76e26-62bf-4811-aa05-c5b71333af80"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SomaQMin}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0 kg">
+					<reportElement x="483" y="2" width="52" height="20" uuid="b527a809-605f-481b-aed5-976b1c13b3dc"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SomaPeso} / $V{SomaQMin}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="71" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="71" uuid="d3a5e211-0d26-45df-af2c-c1bb88963876"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="1" width="555" height="41" uuid="daca52cd-9c4d-4d91-a03e-9d481e3469e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Black" size="26"/>
+				</textElement>
+				<text><![CDATA[Alceu Elias Feldmann]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="42" width="258" height="25" uuid="7ba30ee8-3e7b-41f3-9d4d-5a38392b5f7f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Entrada de Gado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="46" width="65" height="20" uuid="9ec0fa06-3f4f-4e8a-a956-68ade2b382d7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="337" y="46" width="55" height="20" uuid="9e083ef5-d4f1-4880-a571-82428fb1fd35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{dtInicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="46" width="55" height="20" uuid="5f384096-ebbd-4e4c-833e-af0cc6119713"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{dtFinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="392" y="46" width="13" height="20" uuid="07f2ac0e-c54d-471f-afeb-5fe7e02761fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[à]]></text>
+			</staticText>
+			<image isLazy="true">
+				<reportElement x="490" y="9" width="47" height="52" uuid="2af86eee-d7ef-49af-b721-417a3cbe0221"/>
+				<imageExpression><![CDATA[$P{caminhoLogo} != null  ?  $P{caminhoLogo} :
+       "C:\\Users\\agroa\\Desktop\\SistemaAEF\\src\\Icones\\iconeAEF.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="58" y="0" width="86" height="20" uuid="08dcc65b-a99d-4a43-8964-e7db09c0fc75"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="0" width="77" height="20" uuid="53e21d4a-c69f-4b93-abbe-545990e215d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="0" width="79" height="20" uuid="2a542a1c-ec8d-4dcc-8e14-06962d190714"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Origem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="0" width="52" height="20" uuid="acebf106-d821-46a5-a305-5c40d103e08a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qmin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="58" height="20" uuid="dfa53264-72da-4e35-8b02-7a3295d84c46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="71" height="20" uuid="02aa6d37-10c5-4205-b3cc-0c55bae4c1ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Placa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="60" height="20" uuid="0bcb502b-37e1-42f6-95ae-057609ef6deb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Min]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="0" width="54" height="20" uuid="ba4363da-3fd5-4529-a44b-fefcd499efc1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso M]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="58" y="0" width="86" height="20" uuid="c03912ed-01e7-4b85-b0b2-78fec4da1534"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Destino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="0" width="77" height="20" uuid="2fb2c3f3-e54b-4468-aac3-ac7d92eec4db"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Motivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="0" width="79" height="20" uuid="5a313bf6-c0d8-4811-9c23-179603f2166d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Origem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="0" width="52" height="20" uuid="5935a4d0-94c1-4166-ba52-79403b368df9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Qmin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="71" height="20" uuid="96a74c89-39a5-438d-809c-260c1315d1ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="0" width="60" height="20" uuid="349d8889-686c-42ae-a57d-4702e8a91745"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nMin}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0.0 kg">
+				<reportElement x="483" y="0" width="54" height="20" uuid="0af3c6ce-0921-47a3-99a3-6d60a3e4c237"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PesoM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="97">
+			<line>
+				<reportElement x="23" y="48" width="159" height="1" uuid="6dacb4be-7d5a-4b27-85ca-42d5b62d1b0d"/>
+			</line>
+			<line>
+				<reportElement x="337" y="48" width="169" height="1" uuid="1d2a8a03-b94c-4098-be62-4ae16ff03d98"/>
+			</line>
+			<staticText>
+				<reportElement x="337" y="49" width="169" height="20" uuid="df6ed4b9-0f3d-4008-a726-0fb9d4fcdeb2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Capataz]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="23" y="49" width="159" height="20" uuid="db70ee41-d8e1-46c3-b903-0c8103b58edb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NomeUsuario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="romaneio_gta" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7998e66e-96c2-49bf-a164-a433584419ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codRom" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ent_gado_fisica.`ent_gado_fis_id` AS ent_gado_fisica_ent_gado_fis_id,
+     ent_gado_fisica.`ent_gado_fis_ngta` AS ent_gado_fisica_ent_gado_fis_ngta,
+     ent_gado_fisica.`ent_gado_fis_MuniGTA` AS ent_gado_fisica_ent_gado_fis_MuniGTA,
+     ent_gado_fisica.`ent_gado_fis_destGTA` AS ent_gado_fisica_ent_gado_fis_destGTA,
+     ent_gado_fisica.`ent_gado_fis_m12` AS ent_gado_fisica_ent_gado_fis_m12,
+     ent_gado_fisica.`ent_gado_fis_m24` AS ent_gado_fisica_ent_gado_fis_m24,
+     ent_gado_fisica.`ent_gado_fis_m36` AS ent_gado_fisica_ent_gado_fis_m36,
+     ent_gado_fisica.`ent_gado_fis_mm36` AS ent_gado_fisica_ent_gado_fis_mm36,
+     ent_gado_fisica.`ent_gado_fis_m_total` AS ent_gado_fisica_ent_gado_fis_m_total,
+     ent_gado_fisica.`ent_gado_fis_f12` AS ent_gado_fisica_ent_gado_fis_f12,
+     ent_gado_fisica.`ent_gado_fis_f24` AS ent_gado_fisica_ent_gado_fis_f24,
+     ent_gado_fisica.`ent_gado_fis_f36` AS ent_gado_fisica_ent_gado_fis_f36,
+     ent_gado_fisica.`ent_gado_fis_fm36` AS ent_gado_fisica_ent_gado_fis_fm36,
+     ent_gado_fisica.`ent_gado_fis_f_total` AS ent_gado_fisica_ent_gado_fis_f_total
+FROM
+     `ent_gado_fisica` ent_gado_fisica
+WHERE
+     ent_gado_fisica.`ent_gado_fis_nromaneio` = $P{codRom}]]>
+	</queryString>
+	<field name="ent_gado_fisica_ent_gado_fis_id" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_ngta" class="java.lang.String"/>
+	<field name="ent_gado_fisica_ent_gado_fis_MuniGTA" class="java.lang.String"/>
+	<field name="ent_gado_fisica_ent_gado_fis_destGTA" class="java.lang.String"/>
+	<field name="ent_gado_fisica_ent_gado_fis_m12" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_m24" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_m36" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_mm36" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_m_total" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_f12" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_f24" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_f36" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_fm36" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_f_total" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="4e5d4a14-f2e8-45e2-863a-c9ea4d2da4a2"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GTAs']]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="24" height="20" uuid="f9a8a74c-5ec9-4442-a46c-e0cd08a64a04"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="2" width="100" height="20" uuid="91cde6d2-85c8-419e-b0ff-807c326e86a3"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº GTA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="802" height="1" uuid="1f197b28-f62f-4bab-a1e8-94996e32b09a"/>
+			</line>
+			<staticText>
+				<reportElement x="124" y="2" width="50" height="20" uuid="4a5388a2-becf-4019-9536-316b9c62b2a5"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Até 12 m]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="2" width="65" height="20" uuid="3686dcdc-9b39-4910-88d8-7f022f669903"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[13 a 24 m]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="2" width="68" height="20" uuid="3e40e949-54cd-4962-9860-466566ece700"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[25 a 36 m]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="2" width="64" height="20" uuid="3d8273c5-c214-44ea-b71b-1bcab284e9b3"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[> 36 m]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="2" width="84" height="20" uuid="f33cd29e-a866-43d4-a806-c37f8f99b1c4"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Total Machos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="2" width="93" height="20" uuid="596c0c31-9d07-4fb8-82fa-d73e94ecb774"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Femeas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="548" y="2" width="135" height="20" uuid="3a32f3da-5b23-450a-a5db-5d61d49d20a7"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade Origem GTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="683" y="2" width="119" height="20" uuid="a93d79eb-aaf5-44d8-a2c4-599954c76090"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fazenda de Destino]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="24" height="20" uuid="2726a633-63e2-460c-ad45-8c37320e73ab"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="1" width="100" height="20" uuid="5367193f-fa1e-4133-a24e-0df71ef7927c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_ngta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="1" width="50" height="20" uuid="421f9fb6-2123-4348-8efc-65b2c80c36b2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_m12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="1" width="65" height="20" uuid="a70bb739-9d06-4575-ba24-85d077d78607"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_m24}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="1" width="68" height="20" uuid="1d7c1978-724a-4d5c-af9b-3309c45a6b00"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_m36}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="1" width="84" height="20" uuid="d7f750a5-e96e-4f43-afe1-078fdfe44dd8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_m_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="1" width="93" height="20" uuid="2338cf13-13bb-401f-bbb2-f52ae2bb67ec"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_f_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="548" y="1" width="135" height="20" uuid="07cad2f7-dec8-47a3-a98d-88fd83420328"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_MuniGTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="683" y="1" width="119" height="20" uuid="bdf8a6c7-bd5a-4e45-af6e-4189037bf44d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_destGTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="307" y="1" width="64" height="20" uuid="924f2f58-a320-4d70-af38-090de4099270"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_mm36}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

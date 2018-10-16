@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bdc39c75-b282-4422-8eb2-a8204ceecbd5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<style/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="gr_barras" uuid="fd9e952f-2699-4512-b200-5f058ed07e8d">
+		<parameter name="dsDataInicial" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="dsDataFinal" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     SUM(compra_gado.`compra_gado_quant`) AS Quantidade,
+     compra_gado.`compra_gado_comprador` AS Comprador
+FROM
+     `compra_gado` compra_gado
+WHERE compra_gado.`compra_gado_data` BETWEEN $P{dsDataInicial} AND $P{dsDataFinal}
+Group By Comprador
+Order By Quantidade desc]]>
+		</queryString>
+		<field name="Quantidade" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Comprador" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="DataInicial" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-01-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DataFinal" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-12-31"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     SUM(compra_gado.`compra_gado_quant`) AS compra_gado_compra_gado_quant,
+     compra_gado.`compra_gado_comprador` AS compra_gado_compra_gado_comprador
+FROM
+     `compra_gado` compra_gado
+WHERE
+     compra_gado.`compra_gado_data` BETWEEN $P{DataInicial} AND $P{DataFinal}
+GROUP BY
+     compra_gado.`compra_gado_comprador`]]>
+	</queryString>
+	<field name="compra_gado_compra_gado_quant" class="java.math.BigDecimal"/>
+	<field name="compra_gado_compra_gado_comprador" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="37"/>
+	</pageHeader>
+	<summary>
+		<band height="313" splitType="Stretch">
+			<pieChart>
+				<chart isShowLegend="true" theme="default">
+					<reportElement x="0" y="0" width="398" height="313" uuid="ff99ccd8-61c8-4f5b-ace3-4749d74dcbd3"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{compra_gado_compra_gado_comprador}]]></keyExpression>
+					<valueExpression><![CDATA[$F{compra_gado_compra_gado_quant}]]></valueExpression>
+				</pieDataset>
+				<piePlot isShowLabels="true" isCircular="true" labelFormat="{0} - {1}" legendLabelFormat="{2}">
+					<plot>
+						<seriesColor seriesOrder="0" color="#3237A0"/>
+					</plot>
+					<itemLabel>
+						<font isBold="true"/>
+					</itemLabel>
+				</piePlot>
+			</pieChart>
+			<barChart>
+				<chart renderType="draw" theme="default">
+					<reportElement mode="Transparent" x="398" y="0" width="404" height="313" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#0066FF" uuid="63c02901-8262-43d0-9a4d-76daaf77faca"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom"/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="gr_barras" uuid="1747129f-23fe-465b-a34e-2118989f8f0a">
+							<datasetParameter name="dsDataInicial">
+								<datasetParameterExpression><![CDATA[$P{DataInicial}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="dsDataFinal">
+								<datasetParameterExpression><![CDATA[$P{DataFinal}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Quantidade}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Comprador}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{Quantidade}]]></valueExpression>
+						<labelExpression><![CDATA[$F{Quantidade}.toString()]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
+					<plot backgroundAlpha="0.3" foregroundAlpha="0.3" labelRotation="30.0"/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF">
+						<font isStrikeThrough="false"/>
+					</itemLabel>
+					<categoryAxisFormat labelRotation="30.0">
+						<axisFormat>
+							<tickLabelFont>
+								<font size="15" isBold="true" isPdfEmbedded="false"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["Nº Cabeças"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat tickLabelMask="#,##0"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

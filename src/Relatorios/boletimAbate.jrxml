@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boletimAbate" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="27" bottomMargin="20" uuid="1d42fc52-3f0d-4f38-b20b-e445c8a34bf3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nEscala" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     escala_abate.`escalaAbate_idVenda` AS idVenda,
+     escala_abate.`escalaAbate_id` AS nEscala,
+     escala_abate.`escalaAbate_origem` AS Origen,
+     escala_abate.`escalaAbate_destino` AS Destino,
+     escala_abate.`escalaAbate_dtEmbarque` AS dtEmbarque,
+     escala_abate.`escalaAbate_dtAbate` AS dtAbate,
+     escala_abate.`escalaAbate_dtPagto` AS dtPagto,
+     escala_abate.`escalaAbate_qtEscala` AS qtEscala,
+     escala_abate.`escalaAbate_categoria` AS Categoria,
+     escala_abate.`escalaAbate_reaisAr` AS ReaisAR,
+     escala_abate.`escalaAbate_valorTotal` AS ValorTotal,
+     escala_abate.`escalaAbate_pesoMT` AS pesoMT,
+     escala_abate.`escalaAbate_pesoVT` AS pesoVT,
+     escala_abate.`escalaAbate_rend` AS Rendimento,
+     escala_abate.`escalaAbate_pvm` AS PesoVivoM,
+     escala_abate.`escalaAbate_pesoAr` AS pesoAr,
+     escala_abate.`escala_abate_obs` AS Observacao
+
+FROM
+     `escala_abate` escala_abate
+WHERE
+     escala_abate.`escalaAbate_id` = $P{nEscala}]]>
+	</queryString>
+	<field name="idVenda" class="java.lang.Integer"/>
+	<field name="nEscala" class="java.lang.Integer"/>
+	<field name="Origen" class="java.lang.String"/>
+	<field name="Destino" class="java.lang.String"/>
+	<field name="dtEmbarque" class="java.sql.Date"/>
+	<field name="dtAbate" class="java.sql.Date"/>
+	<field name="dtPagto" class="java.sql.Date"/>
+	<field name="qtEscala" class="java.lang.Integer"/>
+	<field name="Categoria" class="java.lang.String"/>
+	<field name="ReaisAR" class="java.math.BigDecimal"/>
+	<field name="ValorTotal" class="java.math.BigDecimal"/>
+	<field name="pesoMT" class="java.math.BigDecimal"/>
+	<field name="pesoVT" class="java.math.BigDecimal"/>
+	<field name="Rendimento" class="java.math.BigDecimal"/>
+	<field name="PesoVivoM" class="java.math.BigDecimal"/>
+	<field name="pesoAr" class="java.math.BigDecimal"/>
+	<field name="Observacao" class="java.lang.String"/>
+	<variable name="reaisCabeca" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="243" height="23" uuid="0956cad9-576f-43a7-9bd4-6445e6d05081"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Boletim de Abate Bovino]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="455" y="3" width="100" height="20" uuid="e14688c8-8baf-44c5-a39c-015272c44a9e"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="377" y="3" width="74" height="20" uuid="a9bf378e-cc84-47fd-bfce-ae3feaccd517"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gerado em:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="13" width="100" height="20" uuid="c5dc34ed-e9f1-4bf7-8b72-e701a9561339"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idVenda}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="13" width="79" height="20" uuid="01624b31-d4ca-4d09-a410-2ea4c6a45ecf"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Venda:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="13" width="79" height="20" uuid="15696133-1e60-4fcf-92c4-e009843647a1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Escala:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="277" y="13" width="100" height="20" uuid="ad9175e8-4074-4af3-9d0e-ae59f6b89366"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nEscala}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="32" width="555" height="1" uuid="a0ec3620-e779-4d95-8f82-f7baa164d4b7"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="191" splitType="Stretch">
+			<textField>
+				<reportElement x="50" y="0" width="100" height="20" uuid="8a104a89-a265-4dd3-b55f-6708da5e82f2"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Destino}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="0" width="49" height="20" uuid="fa4a0368-ea32-41c5-85f5-969532b74c52"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destino:]]></text>
+			</staticText>
+			<textField pattern="###0 cab">
+				<reportElement x="62" y="30" width="88" height="20" uuid="db0f1037-f0cf-40a2-bd15-dfb31dbdce42"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtEscala}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="30" width="61" height="20" uuid="8d3a02ac-16f7-41e2-a547-674387603311"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="30" width="61" height="20" uuid="cdb3e179-5e8e-44fb-b66a-c02811b374d5"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Origem:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="243" y="30" width="108" height="20" uuid="2e7bf51b-45d4-404c-8283-371aba391733"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Origen}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="394" y="30" width="75" height="20" uuid="e5b93238-7179-4fb6-acb2-2fcef8eb388a"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Embarque:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="50" width="75" height="20" uuid="a07e608a-cc4e-4a79-9a44-9d293ed09a04"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Abate:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="70" width="75" height="20" uuid="6f6bb073-a0f7-411f-b759-a5b5080c7911"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pagamento:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="469" y="30" width="86" height="20" uuid="c5048665-db20-4cd0-9192-376d5aae1b56"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtEmbarque}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="469" y="50" width="86" height="20" uuid="afd5b71b-bed8-4d1b-a607-9526fa972131"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtAbate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="469" y="70" width="86" height="20" uuid="bc307796-3863-4944-b07d-28346aec879b"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtPagto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="50" width="61" height="20" uuid="4ecdaf21-3493-47fc-8b5f-719a0a887184"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R$ / @ :]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="62" y="50" width="88" height="20" uuid="9a4b68dd-014f-45c5-9b36-151edd86750a"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ReaisAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="50" width="61" height="20" uuid="0547ad64-8dac-45b2-930e-63d8b39afad9"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R$ / cab. :]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="243" y="50" width="108" height="20" uuid="3b3f573a-6d2c-490d-a68f-6efb94797530"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ValorTotal} /$F{qtEscala}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="110" width="110" height="20" uuid="49e23df6-f552-43d5-b8a9-62bec164b52d"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso Vivo Total:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="111" height="20" uuid="54e58fbe-e044-4e45-a0cf-d5aa1ba8003f"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso Morto Total:]]></text>
+			</staticText>
+			<textField pattern="#,###,##0.00 kg">
+				<reportElement x="111" y="90" width="100" height="20" uuid="a458498d-fc20-40d5-ab08-5ceb7cfb4b90"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesoMT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###,##0.00 kg">
+				<reportElement x="111" y="110" width="100" height="20" uuid="a3f0c96f-882e-4e47-827a-3ec4ad4f5a65"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesoVT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="90" width="78" height="20" uuid="a4263a44-1691-45e7-b229-6f9dc952aaa3"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Rendimento:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="309" y="90" width="56" height="20" uuid="63ae22b7-be4c-439b-b004-d5bd8effaa33"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Rendimento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="110" width="78" height="20" uuid="31071fee-db19-4e4f-a491-991a05ef88a8"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[@ / cab.:]]></text>
+			</staticText>
+			<textField pattern="#0.00 @">
+				<reportElement x="309" y="110" width="56" height="20" uuid="241eb291-1d01-40bf-a156-00e2b1c70835"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesoAr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="142" width="110" height="20" uuid="66b17dd3-8369-4abb-a2ae-f758b6d998f1"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor a Receber:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="111" y="142" width="100" height="20" uuid="67c01a85-8df4-4575-81ce-fb141b9108c3"/>
+				<textElement textAlignment="Left">
+					<font size="11" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ValorTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="163" width="475" height="20" uuid="6ee55afe-5ca8-4836-b034-472bb3911f4a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Observacao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="190" width="555" height="1" uuid="98a6c793-3a6b-4546-8c70-14bf1c8ff417"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="163" width="79" height="20" uuid="046571e3-1e83-4f23-8ab6-e2afc3e19b60"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observação:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="50"/>
+	</summary>
+</jasperReport>

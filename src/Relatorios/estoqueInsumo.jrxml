@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estoqueInsumo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f1381256-dcbe-4107-9776-03ae96eb02fc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style/>
+		</conditionalStyle>
+	</style>
+	<parameter name="dtInicial" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dtFinal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SqlWhere" class="java.lang.String">
+		<defaultValueExpression><![CDATA[" "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="listFazendas" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select ci.cad_ins_id as IdInsumo,
+ci.cad_ins_nome as Insumo,
+ci.cad_ins_categoria as Categoria,
+
+(select cf.cad_fazendas_nome from cad_fazendas cf where cf.cad_fazendas_id = ei2.ent_ins_idFazenda) as Fazenda,
+			IFNULL((SELECT SUM(ei.ent_ins_quant)
+			FROM ent_insumo ei
+            WHERE ei.ent_ins_idInsumo = IdInsumo AND ei.ent_ins_idFazenda = cf.cad_fazendas_id AND ei.ent_ins_dtEntr Between $P{dtInicial} AND $P{dtFinal}),0) as EntradaPeriodo,
+
+			IFNULL((SELECT SUM(si.quantidade)
+			FROM saida_insumos si, saida_insumos_doc sd
+            WHERE sd.id = si.id_documento and sd.idLocalEstoque = cf.cad_fazendas_id AND si.id_insumo = IdInsumo AND sd.data_saida Between $P{dtInicial} AND $P{dtFinal}),0) as SaidaPeriodo,
+
+@EntradaT:= (SELECT SUM(ei.ent_ins_quant)
+			FROM ent_insumo ei
+            WHERE ei.ent_ins_idInsumo = IdInsumo AND ei.ent_ins_idFazenda = cf.cad_fazendas_id AND ei.ent_ins_dtEntr <= $P{dtFinal}) as EntradaTotal,
+
+@SaidaT:= ifnull((SELECT SUM(si.quantidade)
+			FROM saida_insumos si, saida_insumos_doc sd
+            WHERE sd.id = si.id_documento and sd.idLocalEstoque = cf.cad_fazendas_id AND si.id_insumo = IdInsumo AND sd.data_saida <= $P{dtFinal}),0) as SaidaTotal,
+
+@EstFinal:= Round((@EntradaT - @SaidaT),3) as Estoque,
+ci.cad_ins_doseMed as DoseMedia,
+Round(IF(ci.cad_ins_doseMed > 0, @EstFinal/ci.cad_ins_doseMed ,0)) as AreaAplicavel
+
+FROM cad_insumos ci, ent_insumo ei2, cad_fazendas cf where  ci.cad_ins_id = ei2.ent_ins_idInsumo and ei2.ent_ins_idFazenda = cf.cad_fazendas_id
+ $P!{SqlWhere}
+GROUP BY Categoria, IdInsumo, Insumo, Fazenda
+Having Estoque > 0]]>
+	</queryString>
+	<field name="IdInsumo" class="java.lang.Integer"/>
+	<field name="Insumo" class="java.lang.String"/>
+	<field name="Categoria" class="java.lang.String"/>
+	<field name="Fazenda" class="java.lang.String"/>
+	<field name="EntradaPeriodo" class="java.math.BigDecimal"/>
+	<field name="SaidaPeriodo" class="java.math.BigDecimal"/>
+	<field name="EntradaTotal" class="java.math.BigDecimal"/>
+	<field name="SaidaTotal" class="java.math.BigDecimal"/>
+	<field name="Estoque" class="java.lang.Double"/>
+	<field name="DoseMedia" class="java.math.BigDecimal"/>
+	<field name="AreaAplicavel" class="java.lang.Double"/>
+	<group name="Categoria">
+		<groupExpression><![CDATA[$F{Categoria}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="100" height="20" uuid="31270775-4a82-4ee3-82b9-6c5ea2a71c7f"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Categoria}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="1">
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="4c1e7c87-8f45-4212-bf73-e7a2d95e7fbd"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="256" height="35" uuid="b8ad75dd-f396-4d49-8d97-4740881e7288"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estoque de Insumos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="0" width="42" height="20" uuid="23fd3159-edb8-419e-a86d-246c44c2a725"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="0" width="100" height="20" uuid="0b04b712-3b13-4e42-89e3-d2aea5400b22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Insumo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="0" width="100" height="20" uuid="4a9b8286-db44-488b-a7c9-d30e17149612"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fazenda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="0" width="67" height="20" uuid="5c0993b9-d1ec-4ef6-9ae2-23a8777cb141"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="0" width="60" height="20" uuid="febb9b56-59d9-47ba-96c5-4474a74bc0c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="0" width="57" height="20" uuid="c27fc343-0277-4241-ab3f-29d8d95d678f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estoque]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="0" width="43" height="20" uuid="bacc1fb2-c411-417e-b960-78bea312a526"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dose]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="494" y="0" width="61" height="20" uuid="c34bfa43-c29b-41d3-8f85-62574d5c0c7e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Area Aplic.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement style="style1" mode="Opaque" x="0" y="0" width="555" height="20" backcolor="#CCCCFF" uuid="3b102a9c-eea5-4292-bfaa-1a6f581cce62">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) != 0)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="67" y="0" width="100" height="20" uuid="4dd4b4b0-6ce2-4604-900d-2bc949db08f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Insumo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="0" width="100" height="20" uuid="ab00afeb-b937-4e10-bfc8-4d282402cb5d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Fazenda}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="267" y="0" width="67" height="20" uuid="07fd9905-ba06-4082-9878-7d8e5ff0c18b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{EntradaPeriodo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="334" y="0" width="60" height="20" uuid="2fdb31e4-51b4-4641-a6c4-9d642f57ff3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SaidaPeriodo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="394" y="0" width="57" height="20" uuid="074b1c33-243e-4ea1-828f-dd459d59f33b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Estoque}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.000">
+				<reportElement x="451" y="0" width="43" height="20" uuid="4ef3676e-7248-445b-92e8-d41234d303f4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DoseMedia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="494" y="0" width="61" height="20" uuid="aaadfb37-c481-4185-9280-66d4c4c3c35d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{AreaAplicavel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="0" width="42" height="20" uuid="84b88e03-5667-445f-8fd3-5d2557456c61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{IdInsumo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

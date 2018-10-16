@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+    <Container class="javax.swing.JPopupMenu" name="jPopup">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="jmenu_editar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Editar Cadastro"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmenu_editarActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+        </Component>
+        <MenuItem class="javax.swing.JMenuItem" name="jmenu_imprimir">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Imprimir Ficha"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmenu_imprimirActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
+        </Component>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenu_addclassificacao">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Adicionar Classifica&#xe7;&#xe3;o"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu_addclassificacaoActionPerformed"/>
+          </Events>
+        </MenuItem>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="iconifiable" type="boolean" value="true"/>
+    <Property name="maximizable" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="true"/>
+    <Property name="title" type="java.lang.String" value="Cadastro de Funcion&#xe1;rios"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jXTaskPane1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jXTaskPane1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="527" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="org.jdesktop.swingx.JXTaskPane" name="jXTaskPane1">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Op&#xe7;&#xf5;es de Pesquisa"/>
+      </Properties>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cb_funcao" pref="226" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cb_status" pref="231" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txt_nome" pref="246" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txt_cpf" pref="126" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jButton1" pref="133" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txt_dtInicial" pref="133" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txt_dtFinal" pref="133" max="32767" attributes="0"/>
+                              <EmptySpace pref="12" max="32767" attributes="0"/>
+                              <Component id="ch_dtAdmissao" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ch_dtDemissao" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="12" max="32767" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cb_cei" min="-2" pref="161" max="-2" attributes="0"/>
+                              <EmptySpace pref="12" max="32767" attributes="0"/>
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txt_codigo" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cb_fazenda" pref="106" max="32767" attributes="0"/>
+                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cb_setor" pref="108" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_dtInicial" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_dtFinal" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="ch_dtAdmissao" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="ch_dtDemissao" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_cei" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_fazenda" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_setor" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel10" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_codigo" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jLabel8" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_nome" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel9" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_status" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_funcao" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_cpf" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="De"/>
+              </Properties>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="txt_dtInicial">
+              <Properties>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[130, 2147483647]"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="a"/>
+              </Properties>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="txt_dtFinal">
+              <Properties>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[130, 2147483647]"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="ch_dtAdmissao">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Admiss&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="ch_dtDemissao">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Demiss&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="CEI"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_cei">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;CEIBeans&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Fazenda"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_fazenda">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;PropriedadesBeans&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Setor"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_setor">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;ListSetorTrabalhoBeans&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Fun&#xe7;&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Status"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_status">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="8">
+                    <StringItem index="0" value="-"/>
+                    <StringItem index="1" value="Aguardando Registro"/>
+                    <StringItem index="2" value="Ativo"/>
+                    <StringItem index="3" value="Inativo"/>
+                    <StringItem index="4" value="INSS"/>
+                    <StringItem index="5" value="Licen&#xe7;a Maternidade"/>
+                    <StringItem index="6" value="Licen&#xe7;a Paternidade"/>
+                    <StringItem index="7" value="Outras Licen&#xe7;as"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Nome"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_nome">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel9">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="CPF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="mnemonic" type="int" value="101"/>
+                <Property name="text" type="java.lang.String" value="Pesquisar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cb_funcao">
+              <Properties>
+                <Property name="editable" type="boolean" value="true"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Beans.CargosBeans&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txt_cpf">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel10">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txt_codigo">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+      <LayoutCode>
+        <CodeStatement>
+          <CodeExpression id="1_verticalLayout1">
+            <CodeVariable name="verticalLayout1" type="4096" declaredType="org.jdesktop.swingx.VerticalLayout"/>
+            <ExpressionOrigin>
+              <ExpressionProvider type="CodeConstructor">
+                <CodeConstructor class="org.jdesktop.swingx.VerticalLayout" parameterTypes=""/>
+              </ExpressionProvider>
+            </ExpressionOrigin>
+          </CodeExpression>
+          <StatementProvider type="CodeExpression">
+            <CodeExpression id="1_verticalLayout1"/>
+          </StatementProvider>
+        </CodeStatement>
+        <CodeStatement>
+          <CodeExpression id="1_verticalLayout1"/>
+          <StatementProvider type="CodeMethod">
+            <CodeMethod name="setGap" class="org.jdesktop.swingx.VerticalLayout" parameterTypes="int"/>
+          </StatementProvider>
+          <Parameters>
+            <CodeExpression id="2">
+              <ExpressionOrigin>
+                <Value type="int" value="2"/>
+              </ExpressionOrigin>
+            </CodeExpression>
+          </Parameters>
+        </CodeStatement>
+        <CodeStatement>
+          <CodeExpression id="3">
+            <ExpressionOrigin>
+              <CodeExpression id="4_jXTaskPane1">
+                <CodeVariable name="jXTaskPane1" type="8194" declaredType="org.jdesktop.swingx.JXTaskPane"/>
+                <ExpressionOrigin>
+                  <ExpressionProvider type="ComponentRef">
+                    <ComponentRef name="jXTaskPane1"/>
+                  </ExpressionProvider>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <ExpressionProvider type="CodeMethod">
+                <CodeMethod name="getContentPane" class="org.jdesktop.swingx.JXTaskPane" parameterTypes=""/>
+              </ExpressionProvider>
+            </ExpressionOrigin>
+          </CodeExpression>
+          <StatementProvider type="CodeMethod">
+            <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
+          </StatementProvider>
+          <Parameters>
+            <CodeExpression id="1_verticalLayout1"/>
+          </Parameters>
+        </CodeStatement>
+        <CodeStatement>
+          <CodeExpression id="3"/>
+          <StatementProvider type="CodeMethod">
+            <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
+          </StatementProvider>
+          <Parameters>
+            <CodeExpression id="5_jPanel1">
+              <CodeVariable name="jPanel1" type="8194" declaredType="javax.swing.JPanel"/>
+              <ExpressionOrigin>
+                <ExpressionProvider type="ComponentRef">
+                  <ComponentRef name="jPanel1"/>
+                </ExpressionProvider>
+              </ExpressionOrigin>
+            </CodeExpression>
+          </Parameters>
+        </CodeStatement>
+      </LayoutCode>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="tb_funcionarios">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              </Table>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_funcionariosMouseClicked"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

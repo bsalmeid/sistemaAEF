@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.5.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DadosdoFuncionarioFilhos" pageWidth="555" pageHeight="802" whenNoDataType="NoPages" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d3ecc7ea-e197-443d-88d7-a117dc8d3a36">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySql SistemaAEF Adapter"/>
+	<parameter name="Codigo_Funcionario" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * 
+FROM aefvilhena2.cad_funcionarios_filhos 
+WHERE id_funcionario = $P{Codigo_Funcionario}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="id_funcionario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_funcionario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="livro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="livro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="folha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="folha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="numero_folha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="numero_folha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="data_nascimento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="data_nascimento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cad_funcionarios_filhos"/>
+	</field>
+	<columnHeader>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement x="376" y="1" width="179" height="12" uuid="ea7e4e29-1286-4c85-a4df-e149e78d4dfd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba5ccb44-7a9f-40b2-b666-69f92b21ac15"/>
+				</reportElement>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="1" width="299" height="12" uuid="b004a1e2-77b1-431a-9f9c-e145cd74aa67">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="769629d5-2a0a-48c9-a192-7bad6469c09c"/>
+				</reportElement>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="13" width="549" height="1" uuid="61530162-0fd0-4df2-83d0-518f3aa36b17"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="5" y="1" width="299" height="12" uuid="4ce84d52-c9c1-4d3a-8bb0-d897c057a01c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="769629d5-2a0a-48c9-a192-7bad6469c09c"/>
+				</reportElement>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="1" width="179" height="12" uuid="9be54306-76ec-4f53-b190-3a35b683a292">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba5ccb44-7a9f-40b2-b666-69f92b21ac15"/>
+				</reportElement>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

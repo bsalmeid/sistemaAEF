@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="romaneio_min" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5af0a510-7771-403f-a57b-1387e1619c8e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codRom" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ent_gado_fisica.`ent_gado_fis_id` AS ent_gado_fisica_ent_gado_fis_id,
+     ent_gado_fisica.`ent_gado_fis_nromaneio` AS ent_gado_fisica_ent_gado_fis_nromaneio,
+     ent_gado_fisica.`ent_gado_fis_DataFis` AS ent_gado_fisica_ent_gado_fis_DataFis,
+     ent_gado_fisica.`ent_gado_fis_placa` AS ent_gado_fisica_ent_gado_fis_placa,
+     ent_gado_fisica.`ent_gado_fis_quantCab` AS ent_gado_fisica_ent_gado_fis_quantCab,
+     ent_gado_fisica.`ent_gado_fis_QtOrigem` AS ent_gado_fisica_ent_gado_fis_QtOrigem,
+     ent_gado_fisica.`ent_gado_fis_pesoM` AS ent_gado_fisica_ent_gado_fis_pesoM,
+     ent_gado_fisica.`ent_gado_fis_km` AS ent_gado_fisica_ent_gado_fis_km,
+     ent_gado_fisica.`ent_gado_fis_nRefugo` AS ent_gado_fisica_ent_gado_fis_nRefugo,
+     ent_gado_fisica.`ent_gado_fis_destFisico` AS ent_gado_fisica_ent_gado_fis_destFisico,
+     ent_gado_fisica.`ent_gado_fis_trans` AS ent_gado_fisica_ent_gado_fis_trans,
+     ent_gado_fisica.`ent_gado_fis_nMin` AS ent_gado_fisica_ent_gado_fis_nMin
+FROM
+     `ent_gado_fisica` ent_gado_fisica
+WHERE
+     ent_gado_fisica.`ent_gado_fis_nromaneio` = $P{codRom}]]>
+	</queryString>
+	<field name="ent_gado_fisica_ent_gado_fis_id" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_nromaneio" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_DataFis" class="java.sql.Date"/>
+	<field name="ent_gado_fisica_ent_gado_fis_placa" class="java.lang.String"/>
+	<field name="ent_gado_fisica_ent_gado_fis_quantCab" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_QtOrigem" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_pesoM" class="java.math.BigDecimal"/>
+	<field name="ent_gado_fisica_ent_gado_fis_km" class="java.lang.Integer"/>
+	<field name="ent_gado_fisica_ent_gado_fis_nRefugo" class="java.lang.String"/>
+	<field name="ent_gado_fisica_ent_gado_fis_destFisico" class="java.lang.String"/>
+	<field name="ent_gado_fisica_ent_gado_fis_trans" class="java.lang.String"/>
+	<field name="ent_gado_fisica_ent_gado_fis_nMin" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="04755d75-adff-4684-945c-38babeee9fc7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Minutas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="24" height="20" uuid="d2abf465-a0f1-47b3-a48a-a0a6513d8d34"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="23" width="802" height="1" uuid="67bbe314-2e27-40f1-b97b-c7290521da0e"/>
+			</line>
+			<staticText>
+				<reportElement x="24" y="4" width="57" height="20" uuid="57b00b59-859f-4afc-9e7e-17c0c5faf8f8"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Romaneio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="4" width="69" height="20" uuid="194966cb-8c1f-42fa-af1a-f7aff36ed728"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="4" width="59" height="20" uuid="1465f4da-e69d-42f3-ba93-8e60a167cdc5"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso Médio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="4" width="57" height="20" uuid="5048143c-5cc6-4722-b58b-029dcd979d3a"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qt Origem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="3" width="60" height="20" uuid="69739266-01ad-4db5-8f2b-260781f5b410"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qt Destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="4" width="70" height="20" uuid="f553d994-c59b-41eb-9540-25ab80add752"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Placa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="505" y="4" width="61" height="20" uuid="1bd1d0b4-a71d-4c43-a24d-a942bf711e6a"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qt Refugos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="566" y="4" width="111" height="20" uuid="d15bdff8-24be-4449-a72b-c853a33bad25"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transportadora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="677" y="4" width="71" height="20" uuid="f91ae5e8-ea17-4598-8a8c-faa481a67e61"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Minuta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="748" y="4" width="54" height="20" uuid="0aaa95dc-37a5-4d3e-b00c-c028db72ba7e"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="3" width="109" height="20" uuid="22a94a24-49cf-4d94-96a3-08f19b163815"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destino]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="24" height="20" uuid="c2157b89-ab7f-4cb4-be7c-77893da7f5ea"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="0" width="57" height="20" uuid="a4a139da-4e90-47a0-a0ce-d8f2d098a4af"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_nromaneio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="81" y="0" width="69" height="20" uuid="eda63f55-860f-4126-a34e-8dc6f18eb0a5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_DataFis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="259" y="0" width="70" height="20" uuid="aec814b9-8968-4454-b7ec-b4c5cd0469c1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="0" width="59" height="20" uuid="f4df1e24-deed-428b-b0ad-83d77162b409"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_pesoM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="0" width="57" height="20" uuid="224f9486-f0ab-42d9-859a-a5caa6a5dc7c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_QtOrigem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="0" width="60" height="20" uuid="f91eebd2-96ce-4c81-8b5e-4cb43ecf3515"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_quantCab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="0" width="61" height="20" uuid="14675be0-1153-408d-a263-7c8b918588f1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_nRefugo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="566" y="0" width="111" height="20" uuid="9fcda57a-d28e-4912-9968-78a313d114f2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_trans}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="677" y="0" width="71" height="20" uuid="071e41f9-db51-45c9-af31-30e602d38e4b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_nMin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="748" y="0" width="54" height="20" uuid="ced1d0a4-9239-4082-b227-54dabdc0b7a9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_km}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="109" height="20" uuid="20f742fe-177b-44a8-af52-035c63a525a2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ent_gado_fisica_ent_gado_fis_destFisico}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

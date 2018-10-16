@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ficha_admissai" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef69520a-de80-4e52-bc22-9c4895c49db5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from cad_funcionarios where id = $P{id}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_cei" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_contrato" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_fazenda" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_setor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_funcao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="salario_base" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dt_adimissao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dia_descanco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="h_entr1" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="h_saida1" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="h_ent2" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="h_saida2" class="java.util.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="comodato" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dt_demissao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rg_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="org_exp_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dt_emissao_rg_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dt_nasc_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ctps" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="serie_ctps" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dt_emissao_ctps" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dt_emissao_pis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="titulo_eleitoral" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="zona_eleitoral" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sessao_eleitoral" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="habilitacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="categoria_habilitacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reservista" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="deficiente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="deficiencia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cartao_sus" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cor_pele" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="escolaridade_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="beneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="end_beneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uf_beneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cidade_beneficiario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefone_benef" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="end_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uf_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cidade_func" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefone_funcionario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome_pai" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome_mae" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cert_nasc_livro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cert_nasc_folha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cert_nasc_num" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cert_nasc_data" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cert_nasc_cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cert_nasc_uf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado_civil" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome_conj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf_conj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rg_conj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="org_exp_rg_conj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="escolaridade_conj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="profissao_conj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="livro_casamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="folha_casamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero_casamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dt_casamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cidade_casamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uf_casamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="filhos" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="salario_familia" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="titular_conta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_conta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="banco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo_banco" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="agencia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="conta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cidade_agencia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uf_agencia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="29" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="254" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="555" height="123" uuid="90527fa3-4bb7-4adb-945f-ba3f09047c90"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="24" height="20" uuid="9f8aac65-1f1f-48c7-b170-eaa9ab14a8e5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[CEI]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="24" y="0" width="87" height="20" uuid="149ebe9f-a14f-4cf5-b803-78fc82f73624"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{id_cei}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="130" y="0" width="43" height="20" uuid="6d5c73cb-4d72-4114-870c-4af1121dbf95"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Código]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="173" y="0" width="61" height="20" uuid="525721d0-8d56-42d6-8369-1909d0670904"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="248" y="2" width="46" height="20" uuid="7234894b-74a3-4561-b3fc-0fd814da0ac8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo Cto]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="294" y="2" width="100" height="20" uuid="584a3e0a-1dc3-41fd-8495-7c886151f5b3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tipo_contrato}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="412" y="2" width="53" height="20" uuid="c0e4a9ca-3a2d-4b15-8534-4096a410c340"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fazenda]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="465" y="2" width="88" height="20" uuid="fd4f6f59-0897-477b-9309-40af27b3ac2c"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{id_fazenda}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="22" width="39" height="20" uuid="8d54847b-f184-4a42-b9cc-273bccedfa0e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Setor]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="39" y="22" width="100" height="20" uuid="1892ffe0-6269-4b2a-94f4-5a0935caa244"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{id_setor}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="148" y="22" width="43" height="20" uuid="96927ea1-8cf3-4116-bc7d-6d3a7b195a47"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Função]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="191" y="22" width="100" height="20" uuid="f03595f1-306f-4d52-9007-0b1bdc247e45"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{id_funcao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="351" y="22" width="71" height="20" uuid="f709225d-bb04-4b1e-b30c-57fd787b93ae"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{salario_base}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="308" y="22" width="43" height="20" uuid="c40ada9c-fea6-420e-a33e-2d542b3d6b26"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Salário]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

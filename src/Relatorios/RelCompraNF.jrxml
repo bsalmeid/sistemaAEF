@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelCompraNF" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4d4f05f2-0edc-42bf-85cb-5632fa9227bf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codCompra" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ent_gado_nf.`ent_gado_romaneio` AS nRomaneio,
+     ent_gado_nf.`ent_gado_fazenda` AS fazenda,
+     ent_gado_nf.`ent_gado_data_nf` AS data_nf,
+     ent_gado_nf.`ent_gado_produtor` AS gado_produtor,
+     ent_gado_nf.`ent_gado_cpf` AS cpf,
+     ent_gado_nf.`ent_gado_fazOrigem` AS fazOrigem,
+     ent_gado_nf.`ent_gado_NumNF` AS NumNF,
+     ent_gado_nf.`ent_gado_QNF` AS QNF,
+     ent_gado_nf.`ent_gado_valor_nf` AS valor_nf,
+     ent_gado_nf.`ent_gado_valor_cab` AS valor_cab
+FROM
+     `ent_gado_nf` ent_gado_nf
+WHERE
+     ent_gado_nf.`ent_gado_ncompra` = $P{codCompra}]]>
+	</queryString>
+	<field name="nRomaneio" class="java.lang.Integer"/>
+	<field name="fazenda" class="java.lang.String"/>
+	<field name="data_nf" class="java.sql.Date"/>
+	<field name="gado_produtor" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="fazOrigem" class="java.lang.String"/>
+	<field name="NumNF" class="java.lang.String"/>
+	<field name="QNF" class="java.lang.Integer"/>
+	<field name="valor_nf" class="java.math.BigDecimal"/>
+	<field name="valor_cab" class="java.math.BigDecimal"/>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="21" width="73" height="20" uuid="cd515e9c-9470-4e4c-b5e8-900db6b0b9f3"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Romaneio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="21" width="88" height="20" uuid="92955c45-6775-4194-a960-581c60f65547"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fazenda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="21" width="100" height="20" uuid="b60e4878-8b77-467a-b7b3-cb746d4f8ea4"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data da Nota Fiscal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="21" width="171" height="20" uuid="7aa35a27-14c0-4d3d-b5f7-68142ef8aaa2"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Produtor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="21" width="100" height="20" uuid="4ede8423-bff8-4156-bc39-bef2c6e4617a"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fazenda de Origem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="21" width="46" height="20" uuid="d8231b1c-44b0-453b-b246-ee4b4277f4ad"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quant NF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="639" y="21" width="100" height="20" uuid="c5f31488-fc4d-44a8-a07c-14a5572baa6a"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Nota Fiscal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="755" y="21" width="63" height="20" uuid="3e98be5e-5727-4ebe-87ae-b108d418d868"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R$ / Cabeça]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="40" width="842" height="1" uuid="3cce3e54-499f-4135-bb51-9941e2070113"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="20" uuid="05090eef-7569-4ea9-ab6e-fd29074a0ae4"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumo de Notas Fiscais ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="73" height="20" uuid="37245085-4331-4af2-9aba-91f5dbf32264"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nRomaneio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="0" width="88" height="20" uuid="cb66f751-bdd7-4482-85d6-93a739d99c96"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fazenda}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="176" y="0" width="100" height="20" uuid="ab1b9bd6-d99e-4ec5-ad8b-27e2ed0248a6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{data_nf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="0" width="171" height="20" uuid="6e53e49e-0289-44f0-8239-ccc9a6dc3fb5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{gado_produtor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="100" height="20" uuid="f16d818e-7c6e-401e-b07c-ba8de29ec379"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fazOrigem}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0 cb">
+				<reportElement x="580" y="0" width="46" height="20" uuid="2605d68b-e27e-4891-b91d-101aff7b3aa1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{QNF}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="639" y="0" width="100" height="20" uuid="e732c817-161d-4211-b132-d99b50cee333"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valor_nf}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="755" y="0" width="63" height="20" uuid="d346c2c6-4ea6-4e3f-bd1b-267a409e7fe8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valor_cab}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="842" height="1" uuid="5acb60d9-dd41-43f9-9ee8-ab2accf71e92"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

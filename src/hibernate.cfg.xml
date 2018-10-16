@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aefvilhena2?zeroDateTimeBehavior=convertToNull</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.pool_size">5</property>
+        <property name="hibernate.connection.autoReconnect">true</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.default_batch_fetch_size">20</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+    
+        <mapping class="Beans.PedidoAlmoxarifadoItens"/>
+        <mapping class="Beans.PedidosAlmoxarifado"/>
+        <mapping class="Beans.PedidosAlmoxarifadoSolicitacao"/>
+        <mapping class="Beans.PedidosAlmoxarifadoCotacao"/>
+        <mapping class="Beans.PedidosAlmoxarifadoFechamento"/>
+        <mapping class="Beans.PedidosAlmoxarifadoFechamentoItens"/>
+        <mapping class="Beans.PropriedadesBeans"/>
+        <mapping class="Beans.TalhaoBeans"/>
+        <mapping class="Beans.CadUsuario"/>
+        <mapping class="Beans.CadUsuarioPermissoes"/>
+        <mapping class="Beans.CadUsuarioFazendas"/>
+        <mapping class="Beans.EstadosBeans"/>
+        <mapping class="Beans.CidadesBeans"/>
+        <mapping class="Beans.TransportadorasBeans"/>
+        <mapping class="Beans.CadPlacaBeans"/>
+    
+        <mapping class="Beans.AtividadeBeans"/>
+        <mapping class="Beans.ContaBancariaBeans"/>
+        <mapping class="Beans.PlanoContaBeans"/>
+        <mapping class="Beans.BancosBeans"/>
+        <mapping class="Beans.FornecedoresBeans"/>
+        <mapping class="Beans.TipoDocPagto"/>
+        <mapping class="Beans.MoedaBeans"/>
+        
+        <mapping class="Beans.PagamentosBeans"/>
+        <mapping class="Beans.PagtoClassBeans"/>
+        <mapping class="Beans.PagtoNFBeans"/>
+        <mapping class="Beans.AtividadeBeans"/>
+        <mapping class="Beans.CulturaBeans"/>
+        <mapping class="Beans.CultivoBeans"/>
+        <mapping class="Beans.AnoSafra"/>
+        <mapping class="Beans.CentroDeResultado"/>
+        <mapping class="Beans.GrupoContasBeans"/>
+        
+        <mapping class="Beans.InventarioBeans"/>
+        <mapping class="Beans.CategoriaEquipamentosBeans"/>
+        <mapping class="Beans.MarcaEquipamentosBeans"/>
+        <mapping class="Beans.ModeloEquipamentosBeans"/>
+
+        <mapping class="Beans.CategoriaAnimalBeans"/>
+        <mapping class="Beans.CompradorGadoBeans"/>
+        <mapping class="Beans.TransferenciasBancosBeans"/>
+        <mapping class="Beans.CompraGadoBeans"/>
+        
+        <mapping class="Almoxarifado.CadItensAlmoxCodigos"/>
+        <mapping class="Almoxarifado.CategoriaAlmoxarif"/>
+        <mapping class="Almoxarifado.CadItensAlmoxarifadoBeans"/>
+        <mapping class="Almoxarifado.CadItensAlmoxAplicacao"/>
+        <mapping class="Almoxarifado.CadAlmoxarifadoBeans"/>
+        <mapping class="Almoxarifado.LocalizadorAlmoxarifadoBeans"/>
+        <mapping class="Beans.CadUnidadesBeans"/>
+        
+        <mapping class="Beans.RecebimentosBeans"/>
+        <mapping class="Beans.RemessaMercadoriaBeans"/>
+        <mapping class="Beans.RemessaMercadoriaItens"/>
+        
+        <mapping class="Beans.CadColaboradorBeans"/>
+        <mapping class="Beans.CEIBeans"/>
+        <mapping class="Beans.CargosBeans"/>
+        <mapping class="Beans.ListSetorTrabalhoBeans"/>
+        <mapping class="Beans.FilhosFuncionariosBeans"/>
+        <mapping class="Beans.CadColaboradorClassBeans"/>
+        
+        <mapping class="Beans.EntradaAlmoxarifadoItens"/>
+        <mapping class="Beans.EntradaAlmoxarifadoBeans"/>
+        <mapping class="Beans.FornecedoresBeans"/>
+          
+        <mapping resource="Beans/hibernate.hbm.xml"/>
+    
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 5.5.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Despesas_Inventario" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df7b2991-fc7d-40c9-82f7-85d223251bc9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="303"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="686"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style/>
+		</conditionalStyle>
+	</style>
+	<parameter name="dtInicial" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dtFinal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqlWhere" class="java.lang.String">
+		<defaultValueExpression><![CDATA[" "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqlValor" class="java.lang.String">
+		<defaultValueExpression><![CDATA["SUM(ec.clas_valor)"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqlGroupBy" class="java.lang.String">
+		<defaultValueExpression><![CDATA["group by ID, nFrota, Categoria, Marca, Modelo, Titular"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqlTitular" class="java.lang.String">
+		<defaultValueExpression><![CDATA["pg.pagto_titular"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqlDescricao" class="java.lang.String">
+		<defaultValueExpression><![CDATA["ec.clas_descricao"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.awt.Image"/>
+	<queryString>
+		<![CDATA[select
+(select ci.id from cad_inventario ci where ci.id = ec.clas_idinvent) as ID,
+(select ci.n_frota from cad_inventario ci where ci.id = ec.clas_idinvent) as nFrota,
+(select ce.descricao from cad_categoria_equipamentos ce, cad_inventario ci where ci.id = ec.clas_idinvent and ce.id = ci.id_categoria) as Categoria,
+(select cf.marca from cad_marca_equipamentos cf, cad_inventario ci where ci.id = ec.clas_idinvent AND cf.id = ci.id_marca ) as Marca,
+(select cm.descricao from cad_modelo_equip cm,  cad_inventario ci where ci.id = ec.clas_idinvent AND cm.id = ci.id_modelo ) as Modelo,
+concat(pc.pc_conta, ' - ', pc.pc_descricao) as PlanoConta,
+$P!{sqlTitular} as Titular,
+$P!{sqlDescricao} as Descricao, 
+$P!{sqlValor} as Valor
+
+FROM escrituracao_classificacao ec
+		LEFT JOIN cad_inventario ci ON ci.id = ec.clas_idinvent
+		LEFT JOIN pagamentos pg ON ec.clas_idpagto = pg.pagto_id
+		LEFT JOIN cad_plano_conta pc ON ec.clas_id_planocontas = pc.pc_id 
+WHERE   pg.pagto_DataPagto between $P{dtInicial} and $P{dtFinal} and ec.clas_idinvent > 0
+$P!{sqlWhere}
+$P!{sqlGroupBy}
+Having Valor > 0
+Order by PlanoConta, Categoria, ID]]>
+	</queryString>
+	<field name="ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nFrota" class="java.lang.String"/>
+	<field name="Categoria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Modelo" class="java.lang.String"/>
+	<field name="Titular" class="java.lang.String"/>
+	<field name="Valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Descricao" class="java.lang.String"/>
+	<field name="PlanoConta" class="java.lang.String"/>
+	<variable name="SomaCategoria" class="java.lang.Double" resetType="Group" resetGroup="Categoria" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{Valor})]]></variableExpression>
+	</variable>
+	<variable name="SomaPlanoConta" class="java.lang.Double" resetType="Group" resetGroup="PlanoConta" calculation="Sum">
+		<variableExpression><![CDATA[SUM($F{Valor})]]></variableExpression>
+	</variable>
+	<group name="PlanoConta" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{PlanoConta}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="2" y="0" width="288" height="20" uuid="e63b02c7-b0d2-41e3-8701-489da2434fe2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PlanoConta}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="160" y="0" width="292" height="20" uuid="2d00bb18-648e-4c80-8429-4355a954a5bb"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+						<paragraph rightIndent="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Sub-Total "  + $F{PlanoConta}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.##;¤ -#,##0.##">
+					<reportElement x="452" y="0" width="100" height="20" uuid="875a4ab2-dfd1-4ed7-9177-b6455ac705c4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SomaPlanoConta}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Categoria" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{Categoria}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<staticText>
+					<reportElement x="18" y="20" width="63" height="20" uuid="40d500a0-fab0-468b-a758-2265a645b612"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nº Frota]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="83" y="20" width="100" height="20" uuid="3252e5d6-f44d-4941-beab-8ed7dd93d2ab"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Modelo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="183" y="19" width="125" height="20" uuid="8c5fa9b7-711e-4663-8b01-e7b303c22c9b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Favorecido]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="308" y="20" width="146" height="20" uuid="27ac055c-1ded-4f47-897e-b985e3e5c29b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descrição]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="454" y="20" width="100" height="20" uuid="cd658175-dda8-43a7-b4e8-acbf874be7aa"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Valor]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="38" width="555" height="1" uuid="62f59435-d903-4d6b-815f-e398c29d85cd"/>
+				</line>
+				<textField>
+					<reportElement x="2" y="0" width="138" height="20" uuid="a890423c-b323-4640-a658-b2b26767ce6c"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Categoria}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<line>
+					<reportElement x="1" y="-1" width="555" height="1" uuid="d9a26946-2c05-4236-8a3e-f426ad228990"/>
+				</line>
+				<textField>
+					<reportElement x="244" y="0" width="208" height="20" uuid="cc56a3dc-790a-4b33-949a-a09bd1df249c"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+						<paragraph rightIndent="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Sub-Total "  + $F{Categoria}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.##;¤ -#,##0.##">
+					<reportElement x="452" y="0" width="100" height="20" uuid="b80fda60-44bb-4c0b-9bc8-12d51752dd03"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{SomaCategoria}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="71" uuid="cf8f01be-b8b7-4cb8-a7c2-7bc6aac3b229"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="1" width="555" height="41" uuid="5fd3df83-5afd-4491-b294-1418bbf4f3f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Black" size="26"/>
+				</textElement>
+				<text><![CDATA[Alceu Elias Feldmann]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="42" width="258" height="25" uuid="322eefda-cb21-4826-ba36-1996345cb9ca"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Despesas por Inventário]]></text>
+			</staticText>
+			<image isLazy="true">
+				<reportElement x="505" y="9" width="47" height="52" uuid="f289afbf-d5ae-428d-923e-8f7ad23af1cb"/>
+				<imageExpression><![CDATA[$P{caminhoLogo} != null  ?  $P{caminhoLogo} :
+       "C:\\Users\\Usuario\\Desktop\\SistemaAEF\\src\\Icones\\iconeAEF.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="280" y="47" width="62" height="20" uuid="3b3285f5-fcac-4a2d-b4a0-ed705c0642cd"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período de:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM">
+				<reportElement x="342" y="47" width="64" height="20" uuid="e8874a6d-e8b2-42d1-9547-bc35df9935e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dtInicial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="406" y="47" width="17" height="20" uuid="3b0aba28-a365-49a2-a808-b027a23aa7c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[à]]></text>
+			</staticText>
+			<textField pattern="dd-MMM">
+				<reportElement x="423" y="47" width="64" height="20" uuid="2ea0df86-8412-49d8-a382-b41b92eeadb5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dtFinal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement style="style1" mode="Opaque" x="0" y="0" width="555" height="15" backcolor="#CCCCFF" uuid="34b483bd-15e0-4d79-be12-42c3e8dc6ef0">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) != 0)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="16" y="0" width="63" height="15" uuid="e3d47777-36a8-4379-a959-74a1dfbba315"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nFrota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="100" height="15" uuid="42d6141f-92a7-49f0-bfe7-b263b46f6942"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Modelo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="452" y="0" width="100" height="15" uuid="f9bcc4bd-d87b-49f9-98ec-4ea55745f8b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="181" y="0" width="125" height="15" uuid="d8346fd7-8a66-4236-8944-003e49aa4c2e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Titular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="0" width="146" height="15" uuid="b04704ee-d7e5-4a27-80ef-177c06b78197"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="18"/>
+	</columnFooter>
+</jasperReport>
